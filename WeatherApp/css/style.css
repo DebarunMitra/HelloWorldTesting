@@ -1,0 +1,443 @@
+/*
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+file description: CSS file of Weathrt Application
+*/
+.colorPart
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #0080ff;
+}
+.weatherClass
+{
+    position: absolute;
+    top:40%;
+    left:22%;
+    font-style: normal;
+    font-family: sans-serif;
+    font-size: 300%;
+    color:#FFFFFF;
+}
+.appClass
+{
+    position: absolute;
+    top:40%;
+    left:50%;
+    font-style: normal;
+    font-family: sans-serif;
+    font-size: 300%;
+    color:#000000;
+}
+.cityName
+{
+  position: absolute;
+  top:14%;
+  left:57%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 180%;
+}
+.dayTime
+{
+  position: absolute;
+  top:23%;
+  left:57%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.weatherStatus
+{
+  position: absolute;
+  top:27%;
+  left:57%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.tempCount
+{
+  position: absolute;
+  top:30%;
+  left:57%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 260%;
+}
+.celciusClass
+{
+  position: absolute;
+  top:34%;
+  left:61%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+  cursor:pointer;
+}
+.fahrenhiteClass
+{
+  position: absolute;
+  top:34%;
+  left:64%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+  cursor:pointer;
+}
+.divBar
+{
+  position: absolute;
+  top:34%;
+  left:63%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.inputDiv
+{
+  position: absolute;
+  top:56%;
+  left:57%;
+}
+.inputHead
+{
+  width:100%;
+  font-family: sans-serif;
+  font-size: 80%;
+  margin: 1px auto;
+}
+.textBox
+{
+  position: absolute;
+  height: 20px;
+  width:383px;
+  border-radius: 3px;
+  background: white;
+  font-size: 16px;
+  overflow: hidden;
+}
+.suggestVal
+{
+  position: absolute;
+  background: white;
+  width: 385px;
+  border: 0px;
+  margin: 24px auto;
+}
+.suggestVal > div
+{
+  padding: 2px;
+  font-weight: 2px;
+  font-size: 15px;
+  border-top: 1px solid;
+  cursor:pointer;
+}
+.suggestVal > div:hover
+{
+  background-color: #1E90FF;
+}
+.todayWeather
+{
+  position: absolute;
+  top:29%;
+  left:66%;
+  width: 3%;
+  height: 4%;
+
+}
+.endBox
+{
+position: absolute;
+top:0%;
+left: 250%;
+}
+@media only screen and (max-width:1200px) {
+    .colorPart{
+         width: 50%;
+    height: 100%;
+    }
+    .weatherClass{
+        left: 20%;
+        font-size: 300%;
+    }
+    .appClass{
+        left: 60%;
+        font-size: 300%;
+    }
+          .cityName
+    {
+       top:18%;
+       left:60%;
+       width: 60%;
+       font-size: 180%;
+    }
+    .dayTime
+    {
+        top:25%;
+        left:60%;
+        width: 60%;
+        font-size: 120%;
+    }
+    .weatherStatus
+    {
+        top:29%;
+        left:60%;
+        width: 60%;
+        font-size: 120%;
+    }
+    .todayWeather
+{
+  top:32%;
+  left:80%;
+  width: 4%;
+  height: 5%;
+
+}
+.tempCount
+{
+  top:32%;
+  left:60%;
+  font-weight: bolder;
+  font-size: 260%;
+}
+.celciusClass
+{
+  top:36%;
+  left:68%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.fahrenhiteClass
+{
+  top:36%;
+  left:73%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.divBar
+{
+  top:36%;
+  left:71%;
+  font-size: 100%;
+}
+.inputDiv
+{
+  top:60%;
+  left:60%;
+}
+.inputHead
+{
+  width:250%;
+  font-size: 80%;
+  margin: 1px auto;
+}
+.textBox
+{
+  height: 20px;
+  width:350%;
+  border-radius: 3px;
+  font-size: 16px;
+  overflow: hidden;
+}
+.suggestVal
+{
+  background: white;
+  width: 355%;
+  border: 0px;
+  margin: 24px auto;
+}
+.suggestVal > div
+{
+  padding: 2px;
+  font-weight: 2px;
+  font-size: 15px;
+  border-top: 1px solid;
+  cursor:pointer;
+}
+}
+@media only screen and (max-width:700px) {
+    .colorPart{
+        width: 80%;
+        height: 200%;
+    }
+    .weatherClass{
+        top:35%;
+        left:18%;
+         font-size: 300%;
+    }
+    .appClass{
+        top:35%;
+        left:60%;
+        font-size: 300%;
+    }
+       .cityName
+    {
+       top:32%;
+       left:90%;
+       width: 60%;
+       font-size: 180%;
+    }
+    .dayTime
+    {
+        top:48%;
+        left:90%;
+        width: 60%;
+        font-size: 120%;
+    }
+    .weatherStatus
+    {
+        top:56%;
+        left:90%;
+        width: 60%;
+        font-size: 120%;
+    }
+    .todayWeather
+{
+  top:64%;
+  left:120%;
+  width: 6%;
+  height: 8%;
+
+}
+    .tempCount
+{
+  top:60%;
+  left:90%;
+  font-weight: bolder;
+  font-size: 260%;
+}
+.celciusClass
+{
+  top:70%;
+  left:102%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.fahrenhiteClass
+{
+  top:70%;
+  left:110%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.divBar
+{
+  top:70%;
+  left:107%;
+  font-size: 100%;
+}
+.inputDiv
+{
+  top:110%;
+  left:90%;
+}
+.inputHead
+{
+  width:250%;
+  font-size: 80%;
+  margin: 1px auto;
+}
+.textBox
+{
+  height: 20px;
+  width:500%;
+  border-radius: 3px;
+  font-size: 16px;
+  overflow: hidden;
+}
+}
+@media only screen and (max-width:500px) {
+    .colorPart{
+        width: 80%;
+        height: 200%;
+    }
+    .weatherClass{
+        left: 10%;
+         font-size: 250%;
+    }
+    .appClass{
+        left: 62%;
+        font-size: 250%;
+    }
+    .cityName
+    {
+       top:45%;
+       left:90%;
+       width: 60%;
+       font-size: 120%;
+    }
+    .dayTime
+    {
+        top:52%;
+        left:90%;
+        width: 60%;
+        font-size: 100%;
+    }
+    .weatherStatus
+    {
+        top:58%;
+        left:90%;
+        width: 60%;
+        font-size: 100%;
+    }
+    .todayWeather
+{
+  top:61%;
+  left:130%;
+  width: 8%;
+  height: 6%;
+
+}
+    .tempCount
+{
+  top:60%;
+  left:90%;
+  font-weight: bolder;
+  font-size: 260%;
+}
+.celciusClass
+{
+  top:66%;
+  left:106%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.fahrenhiteClass
+{
+  top:66%;
+  left:116%;
+  font-size: 100%;
+  cursor:pointer;
+}
+.divBar
+{
+  top:66%;
+  left:113%;
+  font-size: 100%;
+}
+.inputDiv
+{
+  top:90%;
+  left:90%;
+}
+.inputHead
+{
+  width:250%;
+  font-size: 80%;
+  margin: 1px auto;
+}
+.textBox
+{
+  height: 20px;
+  width:700%;
+  border-radius: 3px;
+  font-size: 16px;
+  overflow: hidden;
+}
+}

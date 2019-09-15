@@ -1,0 +1,130 @@
+/*
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+*/
+.city-name
+{
+  position: absolute;
+  top:20%;
+  left:32%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 180%;
+}
+.day-time
+{
+  position: absolute;
+  top:29%;
+  left:32%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 100%;
+}
+.weather-status
+{
+  position: absolute;
+  top:34%;
+  left:32%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 80%;
+}
+.temp-count
+{
+  position: absolute;
+  top:38%;
+  left:32%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 180%;
+}
+.celcius
+{
+  position: absolute;
+  top:40%;
+  left:36%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 100%;
+  /*color: blue;*/
+}
+.fahrenhite
+{
+  position: absolute;
+  top:40%;
+  left:40%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 100%;
+}
+.div-bar
+{
+  position: absolute;
+  top:40%;
+  left:38.5%;
+  font-style: normal;
+  /*font-family: cursive;*/
+  /*font-family: 'Michroma', sans-serif;*/
+  font-family: 'Cutive', serif;
+  font-size: 100%;
+}
+.input-div
+{
+  position: absolute;
+  top:75%;
+  left:32%;
+}
+.text-box
+{
+  position: absolute;
+  height: 20px;
+  width:400px;
+  border-radius: 5%;
+}
+.today-weather
+{
+  position: absolute;
+  top:50%;
+  left:32%;
+  width: 8%;
+  height: 12%;
+
+}
+.bar
+{
+  position: absolute;
+  top:42%;
+  left: 42%;
+  border-left: 2px solid gray;
+  height: 170px;
+  opacity: 0.5;
+}
+/*@media only screen and (min-width:300px)
+{
+  .city-name
+  {
+      left: 32%;
+    font-size:200%;
+  }
+}
+@media only screen and (max-height:1000px)
+{
+  .city-name
+  {
+    left: 28%;
+    font-size:100%;
+  }
+}*/

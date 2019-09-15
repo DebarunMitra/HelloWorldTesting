@@ -1,0 +1,42 @@
+<!--
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Michroma&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cutive&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>WeatherReportApp</title>
+</head>
+<body>
+<!--h1>Weather Report Application</h1-->
+<div class="content-area">
+  <p id="city_name" class="city-name"></p>
+  <p id="day_time" class="day-time"></p>
+  <p class="weather-status">Thunder Storm, </p>
+  <div class=""></div>
+</div>
+<div class="">
+    <p id="temp" class="temp-count"></p>
+    <div class="">
+      <p id="cel" class="celcius" style="color:blue;" onclick="temparatureConverter(1)"><b>&#8451;</b></p>
+      <p  class="div-bar">|</p>
+      <p id="fahr" class="fahrenhite" style="color:black;" onclick="temparatureConverter(2)"><b>&#8457;</b></p>
+      <img class="today-weather" src="./images/thunder_storm.png" alt="thunder storm">
+      <div class="bar"></div>
+    </div>
+</div>
+<div class="input-div">
+  <input type="text" class="text-box" name="text" value="" placeholder="Enter Your City">
+  <!--button type="button" name="button">Select</button-->
+</div>
+</body>
+<script src="js/script.js">
+</script>
+</html>

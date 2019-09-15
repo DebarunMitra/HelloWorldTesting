@@ -1,0 +1,52 @@
+<!--
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+file description: HTML file of Weathrt Application
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!--Application banner start-->
+  <div class="colorPart">
+    <p class=weatherClass><b>Weather</b></p>
+        <p class=appClass><b>App</b></p>
+  </div>
+  <!--Application banner stop-->
+  <!--main weather div start-->
+  <div>
+  <div>
+  </div>
+  <div class="contentArea">
+    <p id="cityName" class="cityName"></p>
+    <p id="dayTime" class="dayTime"></p>
+    <p id="report" class="weatherStatus"></p>
+    <div class=""></div>
+  </div>
+  <div>
+      <p id="temp" class="tempCount"></p>
+      <div>
+        <b><p id="cel" class="celciusClass" style="color:#1E90FF;">℃</p></b>
+        <p  class="divBar">|</p>
+        <b><p id="fahr" class="fahrenhiteClass" style="color:#000000;">℉</p></b>
+        <img id="weatherImg" class="todayWeather" src="./images/thunderStorm.png" alt="weather">
+        <div class="bar"></div>
+      </div>
+  </div>
+  <div class="inputDiv">
+    <p class="inputHead"><b>Enter Your City</b></p>
+        <input type="text" id="inputSearch" class="textBox" name="text" value="" placeholder="City, State">
+    <input type="hidden" id="inputChecker" class="endBox">
+    <div id="suggestedVal" class="suggestVal">
+    </div>
+  </div>
+  </div>
+    <!--main weather div stop-->
+  </body>
+    <script src="js/script.js"></script>
+</html>

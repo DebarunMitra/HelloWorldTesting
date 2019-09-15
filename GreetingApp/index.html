@@ -1,0 +1,43 @@
+<!--
+author: Debarun Mitra
+name of Application: Greeting App
+objective: update the user every day with current date and time, with holisays
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GreetingApp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    </script>
+  </head>
+  <body>
+    <div class="app">
+        <div class="menubar">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;Greeting App</p>
+        </div>
+    <div class="firstMsgBox">
+    <p id="hi">Hi,</p>
+    <p id="msg1"></p>
+    <p id="msg2"></p>
+    </div>
+    <div id="image">
+      <img id="slider" class="scroll" src="images/welcome.png">
+    </div>
+      <div>
+            <p id="today"></p>
+            <a id="holy" onclick="holidayFunction()"><u>Check HoliDay</u></a>
+            <p id="ishdayhead" class="hdayhead" style="display: none;"><b><u>HoliDay :</u></b></p>
+            <p id="uphdayhead" class="hdayhead" style="display: none;"><b><u>Up Coming HoliDay in this month:</u></b></p>
+            <p id="ishdmsg" class="hdmsg"></p>
+            <div id="uphd"></div>
+        </div>
+    </div>
+  <script src="js/myscript.js"></script>
+  <script>
+       setTimeout(function() {
+  location.reload();
+}, 30000);
+  </script>
+  </body>
+</html>

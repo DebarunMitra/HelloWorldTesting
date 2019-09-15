@@ -1,0 +1,102 @@
+<!--
+Author: Debarun Mitra
+Technology Used: HTML, CSS, JavaScript, JQuery, Bootstrap
+Objective: Create word puzzel game
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>WordPuzzle</title>
+  </head>
+  <body>
+  <div class="container firstContainer" style="display:block">
+    <div class="row justify-content-md-center">
+      <div class="col col-md-1"></div>
+    <div class="head-bar">
+          <p>WORD PUZZLE GAME</p>
+    </div>
+    <div class="col col-md-1"></div>
+    </div>
+    <div id="lpt" class="row justify-content-md-center">
+      <div class="col col-md-2"></div>
+      <div>
+          <p class="level counting-bar">LEVEL:<i class="l-count"></i></p>
+      </div>
+      <div class="col-1"></div>
+      <div>
+          <p class="point counting-bar">POINT:<i class="gamePoint"></i></p>
+      </div>
+      <div class="col-1"></div>
+        <div>
+          <p class="time counting-bar">TIME:<i class="t-sec">0</i></p>
+        </div>
+        <div class="col col-md-2"></div>
+    </div>
+    <div class="row justify-content-md-center hints-box-position">
+      <div class="col col-md-2"></div>
+    <div class="">
+        <p class="hints">He known as KING of the jungle</p>
+    </div>
+    <div class="col col-md-2"></div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-2"></div>
+        <div id="charSetButton" class="d-flex justify-content-center char-set-position">
+    </div>
+    <div class="col col-md-2"></div>
+    </div>
+    <div class="row justify-content-md-center hints-count-position">
+      <div class="col col-md-3"></div>
+      <div>
+        <input class="buttons hintsBtn btn-warning"  type="button" value="Hints">
+      </div>
+      <div class="col col-md-1"></div>
+        <div>
+          <p class="counting-bar">Hints No:<i class="hc">0</i></p>
+        </div>
+        <div class="col col-md-3"></div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-2"></div>
+    <div>
+        <p id="clickedChar" class="col-md-auto">Guess The Word</p>
+    </div>
+    <div class="col col-md-2"></div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-2"></div>
+      <div class="bottomBtn">
+        <input  type="button" class="buttons clear btn-primary" name="clear" value="CLEAR">
+        <input  type="button" class="buttons check btn-success" name="check" value="CHECK">
+      </div>
+      <div class="col col-md-2"></div>
+    </div>
+  </div>
+  <div class="container secondContainer" style="display:none">
+    <div class="row justify-content-md-center">
+      <div class="col col-md-1"></div>
+    <div class="head-bar">
+          <p>WORD PUZZLE GAME</p>
+    </div>
+    <div class="col col-md-1"></div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-2"></div>
+    <div >
+      <img class="image" src="" alt="successImage">
+    </div>
+    <div class="col col-md-2"></div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/puzzleData.js"></script>
+  </body>
+</html>

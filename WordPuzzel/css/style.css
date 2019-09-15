@@ -1,0 +1,73 @@
+/*
+Author: Debarun Mitra
+Technology Used: HTML, CSS, JavaScript, JQuery, Bootstrap
+Objective: Create word puzzel game
+*/
+.head-bar
+{
+  background-color: OrangeRed;
+  border-radius:30px;
+  color:white;
+  line-height:50px;
+  font-size:30px;
+  text-align:center;
+  font-family: cursive;
+  font-size: 200%;
+  width:100%;
+  height:60px;
+  opacity: 0.9;
+}
+.firstContainer
+{
+  background-color:LightGray;
+  border-radius: 40px;
+}
+.counting-bar
+{
+  font-family: cursive;
+  font-size: 15px;
+  color:Indigo;
+}
+.buttons
+{
+  border-radius: 10px;
+  border: none;
+  font-family: cursive;
+  color:white;
+}
+.hints-position
+{
+  margin-top: 30px;
+}
+#clickedChar
+{
+  font-family: cursive;
+  font-size: 15px;
+  color:DodgerBlue;
+}
+.hints
+{
+  font-size: 20px;
+  font-family: cursive;
+  width: 100%;
+  color:red;
+}
+.char-set-position
+{
+  margin-top: 20px;
+}
+.character-button
+{
+  border-radius: 50%;
+  border: none;
+  font-family: cursive;
+  font-size: 20px;
+  width: 20%;
+  height: 100%;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.hints-count-position
+{
+  margin-top: 60px;
+}
