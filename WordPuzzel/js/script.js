@@ -33,6 +33,7 @@ $(document).ready(function(){
     else if (level===(puzQue.length+1)){
       $('.firstContainer').css("display","none");
       $('.secondContainer').css("display","block");
+      $('.score-board').html(point);
       $('.image').attr("src","images/success.gif");
     }
     else {

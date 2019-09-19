@@ -1,0 +1,14 @@
+/*
+Author: Debarun Mitra
+Technology used: HTML, CSS, JavaScript, JQuery, Bootstrap
+objective: Create a responsive game using HTML canvas, CSS, JavaScript, jQuery,Bootstrap
+*/
+.pos-center
+{
+  max-width: 1000px;
+  margin-left: 10%;
+}
+#cid
+{
+  margin-left: -30%;
+}

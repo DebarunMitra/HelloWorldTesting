@@ -16,7 +16,6 @@ function barAccess() {
 //navbar icon end
 //countDown start
 document.getElementById('timeCounter').innerHTML = 9 + ":" + 59;
-
 function startTimer() {
   let presentTime = document.getElementById('timeCounter').innerHTML;
   let timeArray = presentTime.split(/[:]+/);
@@ -28,7 +27,6 @@ function startTimer() {
   document.getElementById('timeCounter').innerHTML = m + ":" + s;
   setTimeout(startTimer, 1500);
 }
-
 function checkSecond(sec) {
   if (sec < 10 && sec >= 0) {
     sec = "0" + sec
@@ -39,7 +37,6 @@ function checkSecond(sec) {
   return sec;
 }
 //countDown stop
-
 function clickedOption(id, que) {
   let optionVal = document.getElementById(id);
   userAns[que - 1] = optionVal.value;
@@ -66,35 +63,37 @@ $(document).ready(function() {
   $("#optionBtn").empty();
   $('.questions').html(' ');
   $('#startModal').modal('show');
-  /*random question set start*/
   $('.start-btn').click(function() {
     $('#startModal').modal('hide');
     $('#instruction').css("display", "block");
     startTimer();
-    let jsonValues = $.getJSON("quizQuestions.json", function() {
-      for (i = 1; i <= qcount; i++) {
-        let queNo = Math.floor(Math.random() * jsonValues.responseJSON.Personalities.length);
-        if (checkRepeat.includes(queNo)) {
-          i = i - 2;
-          if (count >= qcount) {
-            break;
-          }
-        } else {
-          if (count >= qcount) {
-            break;
-          }
-          count = count + 1;
-          checkRepeat.push(queNo);
-          let dataToStore = JSON.stringify(jsonValues.responseJSON.Personalities[queNo]);
-          localStorage.setItem(count, dataToStore);
-        }
-      }
-    });
-    getQuestions(1);
+    randomQuestionLoad();
   });
-  /*random question set end*/
-  /*question-option show start*/
-  let getQuestions = function(qc) {
+/*random question set start*/
+let randomQuestionLoad= function(){
+  let jsonValues = $.getJSON("quizQuestions.json", function() {
+    for (i = 1; i <= qcount; i++) {
+      let queNo = Math.floor(Math.random() * jsonValues.responseJSON.Personalities.length);
+        if (checkRepeat.includes(queNo)) {
+        i = i - 2;
+        if (count >= qcount) {
+          break;
+        }
+      } else {
+        if (count >= qcount) {
+          break;
+        }
+        count = count + 1;
+        checkRepeat.push(queNo);
+        let dataToStore = JSON.stringify(jsonValues.responseJSON.Personalities[queNo]);
+        localStorage.setItem(count, dataToStore);
+      }
+    }
+  });
+}
+/*random question set end*/
+/*question-option show start*/
+let getQuestions = function(qc) {
     $("#optionBtn").empty();
     $('.questions').html(' ');
     let retrievedObject = localStorage.getItem(qc);
@@ -103,13 +102,15 @@ $(document).ready(function() {
     //console.log(parsedObject);
     $('.question-number').html('Question ' + qc + '/');
     for (j = 1; j <= op; j++) {
-      let btn = '<div class="">' + '<input id="' + j + '" type="button" class="option" onclick="clickedOption(' + j + ',' + qc + ')" name="Option" value="' + parsedObject[j] + '"/>' + '</div>';
-      $('#optionBtn').append(btn).last();
-    }
+    let btn = '<div class="">' + '<input id="' + j +'" type="button" class="option" onclick="clickedOption(' + j + ',' + qc + ')" name="Option" value="' + parsedObject[j] + '"/>' + '</div>';
+    $('#optionBtn').append(btn).last();
   }
-  getQuestions(1);
-  /*question-option show end*/
-  /*next question start*/
+}
+/*question-option show end*/
+/*show score start*/
+//let 
+/*show score end*/
+/*next question start*/
   $('.next').click(function() {
     nextPrev += 1;
     if (nextPrev <= qcount) {
@@ -124,7 +125,14 @@ $(document).ready(function() {
       alert('You have seen all questions');
     }
   });
-  /*next question end*/
+/*next question end*/
+/*instruction to next start*/
+  $('.next-go').click(function() {
+  $('#instruction').css("display", "none");
+  $('#questDiv').css("display", "block");
+  getQuestions(1);
+  });
+/*instruction to next end*/
   /*prev question start*/
   $('.prev').click(function() {
     nextPrev -= 1;
@@ -139,19 +147,17 @@ $(document).ready(function() {
       alert('This is the first question');
     }
   });
-  /*next question end*/
-
+/*next question end*/
   $("#submitAns").click(function() {
-    $("#questDiv").css("display", "none");
-    $("#userScore").css("display", "block");
-    $(".timeCounter").css("display", "none");
-    $(".timer-count").html('00:00');
+  $("#userScore").css("display", "block");
+  $("#questDiv,.timeCounter").css("display", "none");
+  $(".timer-count").html('00:00');
     //  clearInterval(startTimer);
-    let point = 0;
-    for (i = 1; i <= qcount; i++) {
-      let retrievedObject = localStorage.getItem(i);
-      let parsedObject = JSON.parse(retrievedObject);
-      if (userAns.includes(parsedObject.ans)) {
+  let point = 0;
+  for (i = 1; i <= qcount; i++) {
+  let retrievedObject = localStorage.getItem(i);
+  let parsedObject = JSON.parse(retrievedObject);
+  if (userAns.includes(parsedObject.ans)) {
         point += 1;
       }
     }
@@ -169,16 +175,12 @@ $(document).ready(function() {
     $('#myModal').modal('show');
   });
   $('#ok').click(function() {
-    //  localStorage.clear();
+    localStorage.clear();
     $('#myModal').modal('hide');
     location.reload();
   });
   /*quit stop*/
   $('.review-ans').click(function() {
     location.reload();
-  });
-  $('.next-go').click(function() {
-    $('#instruction').css("display", "none");
-    $('#questDiv').css("display", "block");
   });
 });

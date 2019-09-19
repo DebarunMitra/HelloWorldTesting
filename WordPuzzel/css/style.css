@@ -71,3 +71,17 @@ Objective: Create word puzzel game
 {
   margin-top: 60px;
 }
+.success
+{
+  color: green;
+  font-size: 25px;
+  font-family: cursive;
+  margin-left: 25%;
+}
+.your-score
+{
+  margin-left: 18%;
+  font-size: 25px;
+  font-family: cursive;
+  color: orange;
+}
