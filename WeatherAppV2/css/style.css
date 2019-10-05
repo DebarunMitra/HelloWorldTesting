@@ -1,0 +1,174 @@
+/*
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+file description: CSS file of Weathrt Application
+*/
+:root {
+  --mainColor: #ff662e;
+  --displayCplor:#e6d0ca;
+  --weatherColor: #FFFFFF;
+  --appColor: #000000;
+  --errorColor: red;
+}
+body{
+  background-color: var(--displayCplor);
+}
+.color-part
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color:var(--mainColor);
+}
+.weatherClass
+{
+    position: absolute;
+    top:30%;
+    left:15%;
+    font-style: normal;
+    font-family: sans-serif;
+    font-size: 300%;
+    color:var(--weatherColor);
+}
+.appClass
+{
+    font-style: normal;
+    font-family: sans-serif;
+    color:var(--appColor);
+}
+.quote{
+  font-size: 18px;
+  color: var(--weatherColor);
+}
+.cityName
+{
+  margin-left: 56%;
+  margin-top: 15%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 180%;
+}
+.dayTime
+{
+  margin-left: 56%;
+  margin-top: -2%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.ws-icon{
+  display: flex;
+  flex-direction: row;
+}
+.weatherStatus
+{
+  margin-left: 56%;
+  margin-top: -1%;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.weather-icon{
+  margin-left:20px;
+  margin-top: -25px;
+  width:50px;
+  height: 50px;
+}
+.temp-canf{
+  margin-top: -20px;
+}
+.tempCount
+{
+  font-style: normal;
+  margin-left: 56%;
+  margin-top: 0%;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 260%;
+}
+.cbf-pos{
+  margin-left: 61%;
+  margin-top: -60px;
+}
+.celciusClass
+{
+  padding:5px;
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+  color:var(--mainColor);
+  cursor:pointer;
+}
+.fahrenhiteClass
+{
+  padding:5px
+  font-style: normal;
+  font-family: sans-serif;
+  font-size: 100%;
+  color:var(--appColor);
+  cursor:pointer;
+}
+.divBar
+{
+  font-style: normal;
+  margin-left: -1%;
+  font-family: sans-serif;
+  font-size: 100%;
+}
+.inputDiv
+{
+  margin-left: 56%;
+  margin-top: 3%;
+}
+.inputHead
+{
+  font-family: sans-serif;
+  font-size: 80%;
+}
+.textBox
+{
+  height: 16px;
+  width:250px;
+  border-radius: 1px;
+  background:var(--weatherColor);
+  font-size: 15px;
+  text-align:20px;
+  overflow: hidden;
+  outline: none !important;
+}
+.suggestVal
+{
+  position: absolute;
+  background:var(--weatherColor);
+  width: 253px;
+  border: 0px;
+}
+.suggestVal > div
+{
+  padding: 2px;
+  font-weight: 2px;
+  font-size: 15px;
+  border-top: 1px solid;
+  cursor:pointer;
+}
+.suggestVal > div:hover
+{
+  background-color: var(--mainColor);
+}
+.search-btn{
+  cursor: pointer;
+}
+.search-btn:hover{
+    background-color: var(--mainColor);
+    border-color: var(--mainColor);
+}
+.error-msg{
+  margin-left: 56%;
+  margin-top: 0%;
+}
+.error-msg p{
+color:var(--errorColor);
+}

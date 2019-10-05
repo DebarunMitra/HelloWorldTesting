@@ -1,0 +1,55 @@
+<!--
+author:Debarun Mitra
+application name:Weather Report application
+objective: Update the user with current weather according to there location
+file description: HTML file of Weathrt Application
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="weather report application">
+    <meta name="keywords" content="HTML,CSS,JSON,JavaScript">
+    <meta name="author" content="DebarunMitra">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!--Application banner start-->
+  <div class="color-part">
+    <p class="weatherClass"><b>Weather<span class="appClass">App</span></b><i><span class="quote">find your sky</span></i></p>
+  </div>
+  <!--Application banner stop-->
+  <!--main weather div start-->
+  <div class="main-weather-div">
+  <div class="contentArea">
+    <p id="cityName" class="cityName"></p>
+    <p id="dayTime" class="dayTime"></p>
+    <div class="ws-icon">
+      <p id="report" class="weatherStatus"></p>
+      <img id="wicon" class="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="weatherIcon">
+    </div>
+  </div>
+  <div class="temp-canf">
+      <p><span id="temp" class="tempCount"></span></p>
+      <p class="cbf-pos"><b><span id="cel" class="celciusClass">℃</span>
+        <span  class="divBar">&nbsp;|&nbsp;</span><span id="fahr" class="fahrenhiteClass">℉</span></b></p>
+  </div>
+  <div class="error-msg">
+      <p id="errmsg"></p>
+  </div>
+  <div class="inputDiv">
+    <p class="inputHead"><b>Enter Your City</b></p>
+    <input type="text" id="inputSearch" class="textBox" name="text" value="" placeholder="City Name">
+    <input type="button" id="btnSearch" class="search-btn" value="Search">
+    <input type="hidden" id="inputChecker" class="endBox">
+    <div id="suggestedVal" class="suggestVal">
+    </div>
+  </div>
+  </div>
+    <!--main weather div stop-->
+  </body>
+    <script src="js/script.js"></script>
+        <!--script src="js/city.js"></script-->
+</html>

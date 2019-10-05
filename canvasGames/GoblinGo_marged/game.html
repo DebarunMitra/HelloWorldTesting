@@ -1,0 +1,57 @@
+<!--
+Author: Debarun Mitra
+Technology used: HTML, CSS, JavaScript, JQuery, Bootstrap
+objective: Create a responsive game using HTML canvas, CSS, JavaScript, jQuery,Bootstrap
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>GoblinGo</title>
+  </head>
+  <body>
+      <div class="container pos-center">
+        <div class="row d-flex justify-content-center">
+          <div class="col">
+            <img class="player-icon" src="images/player-1.png" alt="player-1">
+            <p class="p-name" style="color:#575700; font-size:20px; font-weight:bold;" id="player1Name">player-1</p>
+          </div>
+          <div class="col">
+            <p style="color:#013806; font-size:20px; font-weight:bold;">Time-<i id="timer">02:20</i></p>
+          </div>
+          <div class="col">
+            <img class="player-icon" src="images/player-2.png" alt="player-2">
+            <p class="p-name" style="color:#015955; font-size:20px; font-weight:bold;" id="player2Name">player-2</p>
+          </div>
+        </div>
+        <div style="color:red; font-size:20px; font-weight:bold;" class="row d-flex justify-content-center">
+          <div class="col">
+            <p >Score: <i id="player1Score">score-1</i></p>
+          </div>
+          <div class="col">
+            <p></p>
+          </div>
+          <div class="col">
+            <p>Score: <i id="player2Score">score-1</i></p>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col"></div>
+          <div id="cid" class="col-auto">
+            <canvas id="myCanvas">Sorry, your browser doesn't support the &lt;canvas&gt; element.</canvas>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+      <script src="js/app.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+  </body>
+</html>

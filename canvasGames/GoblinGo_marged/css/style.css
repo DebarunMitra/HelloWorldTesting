@@ -1,0 +1,35 @@
+/*
+Author: Debarun Mitra
+Technology used: HTML, CSS, JavaScript, JQuery, Bootstrap
+objective: Create a responsive game using HTML canvas, CSS, JavaScript, jQuery,Bootstrap
+*/
+body{
+  /* background-color:white; */
+}
+.pos-center
+{
+  max-width: 1000px;
+  margin-left: 20%;
+}
+#cid
+{
+  margin-left: -30%;
+}
+.player-icon
+{
+  height: 40px;
+}
+.score
+{
+  margin-left: 25px;
+  color: red;
+  font-size: 40px;
+  font-weight: bold;
+}
+.winner
+{
+  margin-top: -70px;
+  font-size: 30px;
+  font-weight:bold;
+  color: #ffff00;
+}

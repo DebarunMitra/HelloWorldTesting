@@ -17,7 +17,7 @@ file description: CSS file of Weathrt Application
 {
     position: absolute;
     top:40%;
-    left:22%;
+    left:20%;
     font-style: normal;
     font-family: sans-serif;
     font-size: 300%;
@@ -27,7 +27,7 @@ file description: CSS file of Weathrt Application
 {
     position: absolute;
     top:40%;
-    left:50%;
+    left:48%;
     font-style: normal;
     font-family: sans-serif;
     font-size: 300%;
@@ -117,9 +117,10 @@ file description: CSS file of Weathrt Application
   position: absolute;
   height: 20px;
   width:383px;
-  border-radius: 3px;
+  border-radius: 1px;
   background: white;
   font-size: 16px;
+  text-align:20px;
   overflow: hidden;
 }
 .suggestVal

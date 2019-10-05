@@ -374,7 +374,7 @@ Objective: Create a smartwatch which able to show time, check message, play musi
   background-color: var(--watchContentColor);
   border-radius: 50%;
   margin-top: -5px;
-  margin-left: -5px;
+  margin-left: 0px;
   transform: scale(2);
 }
 
@@ -388,7 +388,12 @@ Objective: Create a smartwatch which able to show time, check message, play musi
   margin-left: -370px;
   max-width: 90px;
 }
+.lap-id
+{
+  color: var(--watchContentColor);
+}
 .lap-text
 {
   color: var(--watchContentColor);
+  margin-left: 10px;
 }

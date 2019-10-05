@@ -1,0 +1,60 @@
+<!--GoblinGo Game
+Author: Aadesh Nichite
+It is a simple game application-->
+
+<html>
+    <head>
+        <title>GoblinGo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+      <div class="container-fluid add-ground">
+        <div class="row d-flex justify-content-center game-bar">
+        <div class="col-1">
+        </div>
+        <div class="col-2">
+            <p class="game-name">GoblinGO</p>
+        </div>
+        <div class="col-3">
+        </div>
+      </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-2"></div>
+        <div class="col-3">
+          <img src="images/player-1.png" alt="player-1">
+          <p id="p1score" style="display:none;" class="score">20</p>
+        </div>
+        <div class="col-3">
+          <img src="images/player-2.png" alt="player-2">
+        <p id="p2score" style="display:none;" class="score">20</p>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center inputs">
+        <div id="input-box" style="display:block;">
+          <input  id="player1"  type="text" class="input-box" name="" value="" placeholder="Player-1 Name" required/>
+          <input  id="player2"  type="text" class="input-box" name="" value="" placeholder="Player-2 Name" required/>
+        </div>
+        <div id="score-box" style="display:none;">
+          <div class="col-3">
+            <p class="winner">WINNER</p>
+            <p id="playerWin" style="color:#ff7700; margin-left:20px; font-size:20px; font-weight:bold;">Player&nbsp;1</p>
+          </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <input type="button" class="btn btn-danger start-btn" value="START" style="display:block;" onclick="init()"/>
+            <input type="button" class="btn btn-warning start-btn" style="display:none;" value="END"/>
+    </div>
+    </div>
+    </body>
+        <script src="js/app.js"></script>
+</html>
