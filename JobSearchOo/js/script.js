@@ -24,9 +24,9 @@ class Jobsearch{
           if(expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp){
               //console.log('expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
               console.log(item);
-              //console.log(expMatch[0]+"-"+expMatch[1]);
+              console.log(enddate);
               let d=parseInt(enddate[1]);
-              //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[0]);
+              console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
             //  console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
               count+=1;
               this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
@@ -35,8 +35,9 @@ class Jobsearch{
             //console.log('!!expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
             console.log(item);
             //console.log(expMatch[0]+"-"+expMatch[1]);
-            let d=parseInt(enddate[1]);
-            //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[0]);
+            let d=parseInt(enddate[1]),y=parseInt(enddate[3]);
+            console.log(enddate);
+            console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
             //console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
             count+=1;
             this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
@@ -53,6 +54,9 @@ class Jobsearch{
     else {
       console.log('Not strExp');
      console.log(item);
+     let d=parseInt(enddate[1]);
+     console.log(enddate);
+     console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
     // console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
       count+=1;
       this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
@@ -95,7 +99,7 @@ class Jobsearch{
           '</li>'+
       '</ul>'+
       '<div class="card-body">'+
-          '<a href="#" class="'+jlink+'">Apply link</a>'+
+          '<a href="'+jlink+'" class="">Apply link</a>'+
       '</div>'+
     '</div><br>';
     document.getElementById("jobContent").appendChild(jobDataTag);
@@ -108,6 +112,7 @@ let search=document.getElementById('search');
   let skill=document.getElementById('skill');
   let cname=document.getElementById('cname');
 search.addEventListener('click',function(){
+  document.getElementById('jobContent').innerHTML="";
   js.getSearchResult(loc.value,skill.value,exp.value,cname.value);
 //  const jso=new Jobsearch();
   //jso.getJobDetails();
