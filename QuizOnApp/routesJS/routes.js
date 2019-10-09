@@ -14,26 +14,22 @@ module.exports = (app, db) => {
   let noq=10;
 //  get random questions
 app.get('/ranQue',(req,res)=>{
-    let getQandO=[];
-            for(let i=1;i<=noq;i++){
-              db.findOne({"q_set":"per"},{projection:{"_id":0,"questions":{$elemMatch:{"qid":i}}}},(err, result) => {
+    //let getQandO=[];
+            //for(let i=1;i<=noq;i++){}
+              let dbVal=db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
                   if (err)
                       console.log(err + " this error has occured");
                   else {
-                      let ques=result.questions[0];
-                      let qando=new Question(ques.question,ques[1],ques[2],ques[3],ques[4],"per",ques.qid);
-                      console.log("Questions picked from DataBase "+i);
-                      getQandO.push(qando);
-                  }
-                  if(getQandO.length===noq)
-                  {
-                    let qoJson=JSON.stringify(getQandO);
-                    res.send(qoJson);
+                    console.log(result.questions);
+                    return result;
+                      // let ques=result.questions[0];
+                      // let qando=new Question(ques.question,ques[1],ques[2],ques[3],ques[4],"per",ques.qid);
+                      // console.log("Questions picked from DataBase "+i);
+                      // getQandO.push(qando);
                   }
               });
-            }
+              console.log(dbVal);
           });
-
 
   //check answer
   app.post('/checkAns',(req,res)=>{
