@@ -13,33 +13,33 @@ class Jobsearch{
     console.log(regexLoc+','+regexExp+','+regexSkill+','+regexCname);
     fetch('https://nut-case.s3.amazonaws.com/jobs.json').then(response=>response.json()).then(item=>{
     let data=item.data;
+    let date=new Date();
     let job=data.filter(ele=>ele.skills.match(regexSkill) && ele.location.match(regexLoc) && ele.companyname.match(regexCname)).map((item)=>{
     if(strExp!==undefined){
       console.log('strExp');
       let expMatch=item.experience.match(regexExp);
-      let date=new Date();
       let enddate=item.enddate.split(/,| /);
       if(expMatch!==null){
         if(expMatch[0]!==undefined && parseInt(expMatch[0])<=strExp && parseInt(expMatch[0])!==0 && enddate!==''){
           if(expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp){
               //console.log('expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
-            //  console.log(item);
+              console.log(item);
               //console.log(expMatch[0]+"-"+expMatch[1]);
               let d=parseInt(enddate[1]);
               //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[0]);
-              console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+            //  console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
               count+=1;
-              this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.enddate,item.applylink);
+              this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
           }
           else if(expMatch[1]!==undefined && parseInt(expMatch[1])===strExp){
             //console.log('!!expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
-          //  console.log(item);
+            console.log(item);
             //console.log(expMatch[0]+"-"+expMatch[1]);
             let d=parseInt(enddate[1]);
             //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[0]);
-            console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+            //console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
             count+=1;
-            this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.enddate,item.applylink);
+            this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
           }
         }
        //  else if(parseInt(expMatch[0])===0){
@@ -53,15 +53,15 @@ class Jobsearch{
     else {
       console.log('Not strExp');
      console.log(item);
-     console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+    // console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
       count+=1;
-      this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.enddate,item.applylink);
+      this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
     }
   });
   console.log('count:'+count);
   }).catch(err=>console.log('ERROR:'+err));
   }
-  getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,japply,jlink){
+  getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,jexp,japply,jlink){
     let jobDataTag=document.createElement('p');
     jobDataTag.innerHTML ='<div class="card" style="width:90%;"><div class="card-body"><h3 class="card-title">'+jcn+'</h3>'+
     '<p class="card-text">'+jtitle+'</p>'+
@@ -83,6 +83,10 @@ class Jobsearch{
             '<div class="">'+
               '<h6 class="card-title">Salary:</h6>'+
                '<p>'+jsal+'</p>'+
+            '</div>'+
+            '<div class="sal-enddate">'+
+              '<h6 class="card-title">Expirence:</h6>'+
+              '<p>'+jexp+'</p>'+
             '</div>'+
             '<div class="sal-enddate">'+
               '<h6 class="card-title">Last Date:</h6>'+
