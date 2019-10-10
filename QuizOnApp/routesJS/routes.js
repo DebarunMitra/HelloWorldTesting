@@ -22,7 +22,7 @@ class Question
            return this.randomQueSet(qsetId,question,length);
          }
     }else {
-          return this.randomQueSet(qsetId,question,length);
+        return this.randomQueSet(qsetId,question,length);
     }
   }
   checkAns(qsetId,question,length,uans,ual){
@@ -34,19 +34,28 @@ class Question
       let uaQid=uans[ual].qid,uaAns=uans[ual].ans;
       if(uans[ual].qid!==null && uans[ual].ans!==null && uans[ual].opid!==null){
         this.point=question.filter(item => item.qid===uaQid).map((qset) => {
+        console.log(qset.ans+"||"+uaAns);
          if(qset.ans===uaAns){
+              console.log("match");
               this.point+=1;ual-=1;
+              console.log("cal point: "+this.point);
+              console.log(ual);
               return this.checkAns(qsetId,question,length,uans,ual);
          }
          else{
+           console.log("not match");
              ual-=1;
+             console.log(ual);
              return this.checkAns(qsetId,question,length,uans,ual);
          }
         });
-            return this.point;
+        console.log(this.point);
+        return this.point;
       }
       else {
+        console.log("NULL match");
         ual-=1;
+        console.log(ual);
         return this.checkAns(qsetId,question,length,uans,ual);
       }
     }
@@ -81,7 +90,8 @@ module.exports = (app, db) => {
         const qno=new Question(noq);
         let len=que[0].questions.length,no=0;
         let point=qno.checkAns('per',question,len,reqData,reqData.length-1);
-        res.send(String(point));
+        console.log("point: "+point);
+       res.send(String(point));
       });
     }
   });
