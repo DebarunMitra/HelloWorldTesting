@@ -5,33 +5,23 @@ class Question
     this.qno=[];
     this.questions=[];
   }
-  randomNumber(question,length){
+  randomQueOpe(qsetId,question,length){
     let no=Math.floor(Math.random() * (length-1));
     if(!this.qno.includes(no) && no>0)
     {
       this.qno.push(no);
-        //console.log("ranDom: "+no);
         let q=question.filter(item => item.qid===no).map((qset) => {
-        //this.questions.push(qset.question)
-      //  console.log({"q":qset.question,"a":qset[1],"b":qset[2],"c":qset[3],"d":qset[4],"qset":'per',"qid":qset.qid});
-        this.questions[this.count-1]={"q":qset.question,"a":qset[1],"b":qset[2],"c":qset[3],"d":qset[4],"qset":'per',"qid":qset.qid};
+        this.questions[this.count-1]={"q":qset.question,"a":qset[1],"b":qset[2],"c":qset[3],"d":qset[4],"qset":qsetId,"qid":qset.qid};
       });
         this.count-=1;
         if(this.count===0){
-        //  console.log(this.questions);
           return this.questions;
         }
-         if(this.count>0){
-           //console.log("count: "+this.count);
-           return this.randomNumber(question,length);
+        if(this.count>0){
+           return this.randomNumber(qsetId,question,length);
          }
-      //return no;
-    }
-    else {
-      //console.log("ranDom repeat");
-      //console.log("repeat: "+no);
-      //return this.randomNumber(number-1);
-      return this.randomNumber(question,length);
+    }else {
+        return this.randomNumber(qsetId,question,length);
     }
   }
 }
@@ -46,7 +36,7 @@ module.exports = (app, db) => {
               let question=que[0].questions;
               const qno=new Question(noq);
               let len=que[0].questions.length,no=0;
-              let getQandO=qno.randomNumber(question,len);
+              let getQandO=qno.randomQueOpe('per',question,len);
               res.send(JSON.stringify(getQandO));
             });
           });
