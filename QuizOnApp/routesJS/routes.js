@@ -4,8 +4,9 @@ class Question
     this.count=count;
     this.qno=[];
     this.questions=[];
+    this.point=0;
   }
-  randomQueOpe(qsetId,question,length){
+  randomQueSet(qsetId,question,length){
     let no=Math.floor(Math.random() * (length-1));
     if(!this.qno.includes(no) && no>0)
     {
@@ -18,10 +19,39 @@ class Question
           return this.questions;
         }
         if(this.count>0){
-           return this.randomNumber(qsetId,question,length);
+           return this.randomQueSet(qsetId,question,length);
          }
     }else {
-        return this.randomNumber(qsetId,question,length);
+        return this.randomQueSet(qsetId,question,length);
+    }
+  }
+  checkAns(qsetId,question,length,uans,ual){
+    if(ual===-1){
+     console.log("final point: "+this.point);
+     return this.point;
+    }
+    else{
+      let uaQid=uans[ual].qid,uaAns=uans[ual].ans;
+      if(uans[ual].qid!==null && uans[ual].ans!==null && uans[ual].opid!==null){
+        this.point=question.filter(item => item.qid===uaQid).map((qset) => {
+        console.log(qset.ans+"||"+uaAns);
+         if(qset.ans===uaAns){
+              console.log("match");
+              this.point+=1;ual-=1;
+              console.log("cal point: "+this.point);
+              console.log(ual);
+              return this.checkAns(qsetId,question,length,uans,ual);
+         }
+         else{
+           console.log("not match");
+             ual-=1;
+             console.log(ual);
+             return this.checkAns(qsetId,question,length,uans,ual);
+         }
+        });
+        console.log(this.point);
+        return this.point;
+      }
     }
   }
 }
@@ -36,36 +66,27 @@ module.exports = (app, db) => {
               let question=que[0].questions;
               const qno=new Question(noq);
               let len=que[0].questions.length,no=0;
-              let getQandO=qno.randomQueOpe('per',question,len);
+              let getQandO=qno.randomQueSet('per',question,len);
               res.send(JSON.stringify(getQandO));
             });
           });
 
   //check answer
   app.post('/checkAns',(req,res)=>{
-    let point=0;
-      let reqData=req.body;
-      for(let i=0;i<noq;i++){
-            if(reqData[i].ans!==null && reqData[i].q_set!==null && reqData[i].qid!==null && reqData[i].opid!==null){
-              db.findOne({"q_set":reqData[i].q_set},{projection:{"_id":0,"questions":{$elemMatch:{"qid":reqData[i].qid}}}},(err,result)=>{
-                if (err)
-                    console.log(err + " this error has occured");
-                else {
-                  let qans=result.questions[0];
-                        if(qans.ans===reqData[i].ans)
-                        {
-                         point+=1;
-                         console.log(point);
-                        }
-                        if(i===noq-1)
-                        {
-                        res.send(String(point));
-                        console.log("p"+point);
-                        }
-                }
-              });
-            }
-            console.log("i: "+i);
-      }
+    let reqData=req.body;
+    if(reqData){
+      let userAns;
+      db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
+           (err===true)?console.log(err + " this error has occured"):(userAns=result.toArray());
+      });
+        userAns.then(que=>{
+        let question=que[0].questions;
+        const qno=new Question(noq);
+        let len=que[0].questions.length,no=0;
+        let point=qno.checkAns('per',question,len,reqData,reqData.length-1);
+        console.log("point: "+point);
+       res.send(String(point));
+      });
+    }
   });
 };
