@@ -18,12 +18,12 @@ class Question
       });
         this.count-=1;
         if(this.count===0){
-          console.log(this.questions);
-          return
+        //  console.log(this.questions);
+          return this.questions;
         }
          if(this.count>0){
            //console.log("count: "+this.count);
-           this.randomNumber(question,length);
+           return this.randomNumber(question,length);
          }
       //return no;
     }
@@ -31,16 +31,13 @@ class Question
       //console.log("ranDom repeat");
       //console.log("repeat: "+no);
       //return this.randomNumber(number-1);
-      this.randomNumber(question,length);
+      return this.randomNumber(question,length);
     }
   }
 }
 module.exports = (app, db) => {
   let noq=10;
-//  get random questions
-app.get('/ranQue',(req,res)=>{
-    //let getQandO=[];
-            //for(let i=1;i<=noq;i++){}
+  app.get('/ranQue',(req,res)=>{
               let dbVal;
               db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
                    (err===true)?console.log(err + " this error has occured"):(dbVal=result.toArray());
@@ -48,13 +45,9 @@ app.get('/ranQue',(req,res)=>{
               dbVal.then(que=>{
               let question=que[0].questions;
               const qno=new Question(noq);
-              let getQandO=[],len=que[0].questions.length,no=0;
-              let num=qno.randomNumber(question,len);
-              // question.slice(0,10).filter(item=>{
-              //   let num=qno.randomNumber(len);
-              //   console.log("num: "+num);
-              //   return (item.qid===num);
-              // }).map(qset => {console.log(qset);});
+              let len=que[0].questions.length,no=0;
+              let getQandO=qno.randomNumber(question,len);
+              res.send(JSON.stringify(getQandO));
             });
           });
 
