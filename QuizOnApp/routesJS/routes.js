@@ -32,7 +32,7 @@ class Question
     else{
       if(uans[ual]!==null){
         let uaQid=uans[ual].qid,uaAns=uans[ual].ans;
-        this.point=question.filter(item => item.qid===uaQid).map((qset) => {
+        this.point=question.filter(item => item.qid===uaQid).map((qset)=>{
          if(qset.ans===uaAns){
               this.point+=1;ual-=1;
               return this.checkAns(qsetId,question,length,uans,ual);
@@ -40,7 +40,7 @@ class Question
          else{
              ual-=1;
              return this.checkAns(qsetId,question,length,uans,ual);
-         }
+           }
         });
         return this.point;
       }
@@ -53,6 +53,7 @@ class Question
 }
 module.exports = (app, db) => {
   let noq=10;
+  //randon question answar set 
   app.get('/ranQue',(req,res)=>{
               let dbVal;
               db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
