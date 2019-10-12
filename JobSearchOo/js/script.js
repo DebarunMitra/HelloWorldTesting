@@ -18,15 +18,15 @@ class Jobsearch{
     if(strExp!==undefined){
       console.log('strExp');
       let expMatch=item.experience.match(regexExp);
-      let enddate=item.enddate.split(/,| /);
+    //  let enddate=item.enddate.split(/,| /);
       if(expMatch!==null){
         if(expMatch[0]!==undefined && parseInt(expMatch[0])<=strExp && parseInt(expMatch[0])!==0 && enddate!==''){
           if(expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp){
               //console.log('expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
               console.log(item);
-              console.log(enddate);
-              let d=parseInt(enddate[1]);
-              console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
+            //  console.log(enddate);
+            //  let d=parseInt(enddate[1]);
+            //  console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
             //  console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
               count+=1;
               this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
@@ -35,9 +35,9 @@ class Jobsearch{
             //console.log('!!expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
             console.log(item);
             //console.log(expMatch[0]+"-"+expMatch[1]);
-            let d=parseInt(enddate[1]),y=parseInt(enddate[3]);
-            console.log(enddate);
-            console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
+          //  let d=parseInt(enddate[1]),y=parseInt(enddate[3]);
+          //  console.log(enddate);
+          //  console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
             //console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
             count+=1;
             this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
@@ -54,9 +54,9 @@ class Jobsearch{
     else {
       console.log('Not strExp');
      console.log(item);
-     let d=parseInt(enddate[1]);
-     console.log(enddate);
-     console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
+  //   let d=parseInt(enddate[1]);
+    // console.log(enddate);
+     //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
     // console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
       count+=1;
       this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
