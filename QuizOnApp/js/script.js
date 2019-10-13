@@ -1,73 +1,139 @@
 // Author: Debarun Mitra
 // Technology used: HTML, CSS, JavaScript, JQuery, Bootstrap
 // objective: Create a quiz application
-//navbar icon start
-let bar = document.getElementById('myLinks');
-const gradeMsg = ["Improve!!", "GOOD", "GREAT!!"]
-let userAns = new Array();let st;
-function barAccess() {
-  if (bar.style.display == "block") {
-    bar.style.display = "none";
-  } else {
-    bar.style.display = "block";
+
+class QuizOn{
+  constructor(){
+    this.userAns = new Array();
+    this.st=0;
+    this.gradeMsg = ["Improve!!", "GOOD", "GREAT!!"];
+    this.bar = document.getElementById('myLinks');
+    document.getElementById('timeCounter').innerHTML = 9 + ":" + 59;
   }
+  //navbar icon start
+  barAccess() {
+    if (this.bar.style.display == "block") {
+      this.bar.style.display = "none";
+    } else {
+      this.bar.style.display = "block";
+    }
+  }
+  //navbar icon end
+  //countDown start
+  startTimer() {
+    let presentTime = document.getElementById('timeCounter').innerHTML;
+    let timeArray = presentTime.split(/[:]+/);
+    let m = timeArray[0];
+    let s = checkSecond((timeArray[1] - 1));
+    if (s == 59) {
+      if(m!==0){
+        m = m - 1;
+      }
+    }
+    document.getElementById('timeCounter').innerHTML = m + ":" + s;
+    st=setTimeout(startTimer, 1000);
+  }
+  checkSecond(sec) {
+    if (sec < 10 && sec >= 0) {
+      sec = "0" + sec
+    }; // add zero in front of numbers < 10
+    if (sec < 0) {
+      sec = "59"
+    };
+    return sec;
+  }
+  //countDown stop
+  //user ans collection start
+  clickedOption(id, que, qset,qid) {
+    let optionVal = document.getElementById(id);
+    this.userAns[que] ={"opid":id,"q_set":qset,"qid":qid,"ans":optionVal.value};
+    for (i = 1; i <= 4; i++) {
+      if (i != id) {
+        document.getElementById(i).style.border = "solid";
+        document.getElementById(i).style.borderColor = "white";
+      } else {
+        optionVal.style.border = "solid";
+        optionVal.style.outline = "none";
+        optionVal.style.borderColor = "#374176";
+        localStorage.setItem("ans",JSON.stringify(this.userAns));
+      }
+    }
+  }
+  //user ans collection end
 }
+
+
+//navbar icon start
+//let bar = document.getElementById('myLinks');
+//const gradeMsg = ["Improve!!", "GOOD", "GREAT!!"];
+//let userAns = new Array();let st;
+// function barAccess() {
+//   if (bar.style.display == "block") {
+//     bar.style.display = "none";
+//   } else {
+//     bar.style.display = "block";
+//   }
+// }
 //navbar icon end
 
 //countDown start
-document.getElementById('timeCounter').innerHTML = 9 + ":" + 59;
-function startTimer() {
-  let presentTime = document.getElementById('timeCounter').innerHTML;
-  let timeArray = presentTime.split(/[:]+/);
-  let m = timeArray[0];
-  let s = checkSecond((timeArray[1] - 1));
-  if (s == 59) {
-    if(m!==0){
-      m = m - 1;
-    }
-  }
-  document.getElementById('timeCounter').innerHTML = m + ":" + s;
-  st=setTimeout(startTimer, 1000);
-}
-function checkSecond(sec) {
-  if (sec < 10 && sec >= 0) {
-    sec = "0" + sec
-  }; // add zero in front of numbers < 10
-  if (sec < 0) {
-    sec = "59"
-  };
-  return sec;
-}
-//countDown stop
+// document.getElementById('timeCounter').innerHTML = 9 + ":" + 59;
+// function startTimer() {
+//   let presentTime = document.getElementById('timeCounter').innerHTML;
+//   let timeArray = presentTime.split(/[:]+/);
+//   let m = timeArray[0];
+//   let s = checkSecond((timeArray[1] - 1));
+//   if (s == 59) {
+//     if(m!==0){
+//       m = m - 1;
+//     }
+//   }
+//   document.getElementById('timeCounter').innerHTML = m + ":" + s;
+//   st=setTimeout(startTimer, 1000);
+// }
+// function checkSecond(sec) {
+//   if (sec < 10 && sec >= 0) {
+//     sec = "0" + sec
+//   }; // add zero in front of numbers < 10
+//   if (sec < 0) {
+//     sec = "59"
+//   };
+//   return sec;
+// }
+// //countDown stop
 
-//user ans collection start
-function clickedOption(id, que, qset,qid) {
-  let optionVal = document.getElementById(id);
-  userAns[que] ={"opid":id,"q_set":qset,"qid":qid,"ans":optionVal.value};
-  for (i = 1; i <= 4; i++) {
-    if (i != id) {
-      document.getElementById(i).style.border = "solid";
-      document.getElementById(i).style.borderColor = "white";
-    } else {
-      optionVal.style.border = "solid";
-      optionVal.style.outline = "none";
-      optionVal.style.borderColor = "#374176";
-      localStorage.setItem("ans",JSON.stringify(userAns));
-    }
-  }
-}
-//user ans collection end
+// //user ans collection start
+// function clickedOption(id, que, qset,qid) {
+//   let optionVal = document.getElementById(id);
+//   userAns[que] ={"opid":id,"q_set":qset,"qid":qid,"ans":optionVal.value};
+//   for (i = 1; i <= 4; i++) {
+//     if (i != id) {
+//       document.getElementById(i).style.border = "solid";
+//       document.getElementById(i).style.borderColor = "white";
+//     } else {
+//       optionVal.style.border = "solid";
+//       optionVal.style.outline = "none";
+//       optionVal.style.borderColor = "#374176";
+//       localStorage.setItem("ans",JSON.stringify(userAns));
+//     }
+//   }
+// }
+// //user ans collection end
 
 $(document).ready(function() {
   let qcount = 10,op = 4,count = 0,nextPrev = 1;
   let opArr=['a','b','c','d'];
   let checkRepeat = new Array();
   checkRepeat = [];
-  $('.total-que').html(qcount);
-  $("#optionBtn").empty();
-  $('.questions').html(' ');
-  $('#startModal').modal('show');
-
+  initLoad();
+  //initial load start
+  let initLoad=function(){
+    $('.total-que').html(qcount);
+    $("#optionBtn").empty();
+    $('.questions').html(' ');
+    $('#startModal').modal('show');
+  }
+  //initial load stop
   /*question load  start*/
   $('.start-btn').click(function() {
       $.ajax({
