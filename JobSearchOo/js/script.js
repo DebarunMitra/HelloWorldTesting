@@ -12,58 +12,58 @@ class Jobsearch{
     (experience==='')?strExp=undefined:strExp=experience;
     console.log(regexLoc+','+regexExp+','+regexSkill+','+regexCname);
     fetch('https://nut-case.s3.amazonaws.com/jobs.json').then(response=>response.json()).then(item=>{
-    let data=item.data;
-    let date=new Date();
-    let job=data.filter(ele=>ele.skills.match(regexSkill) && ele.location.match(regexLoc) && ele.companyname.match(regexCname)).map((item)=>{
-    if(strExp!==undefined){
-      console.log('strExp');
-      let expMatch=item.experience.match(regexExp);
-    //  let enddate=item.enddate.split(/,| /);
-      if(expMatch!==null){
-        if(expMatch[0]!==undefined && parseInt(expMatch[0])<=strExp && parseInt(expMatch[0])!==0 && enddate!==''){
-          if(expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp){
-              //console.log('expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
-              console.log(item);
-            //  console.log(enddate);
+      let data=item.data;
+      let date=new Date();
+      let job=data.filter(ele=>ele.skills.match(regexSkill) && ele.location.match(regexLoc) && ele.companyname.match(regexCname)).map((item)=>{
+      if(strExp!==undefined){
+        console.log('strExp');
+        let expMatch=item.experience.match(regexExp);
+        let enddate=item.enddate.split(/,| /);
+        if(expMatch!==null){
+          if(expMatch[0]!==undefined && parseInt(expMatch[0])<=strExp && parseInt(expMatch[0])!==0 && enddate!==''){
+            if(expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp){
+                //console.log('expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
+                console.log(item);
+              //  console.log(enddate);
             //  let d=parseInt(enddate[1]);
+              //  console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
+              //  console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+                count+=1;
+                this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
+            }
+            else if(expMatch[1]!==undefined && parseInt(expMatch[1])===strExp){
+              //console.log('!!expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
+              console.log(item);
+              //console.log(expMatch[0]+"-"+expMatch[1]);
+            //  let d=parseInt(enddate[1]),y=parseInt(enddate[3]);
+            //  console.log(enddate);
             //  console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
-            //  console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+              //console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
               count+=1;
               this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
+            }
           }
-          else if(expMatch[1]!==undefined && parseInt(expMatch[1])===strExp){
-            //console.log('!!expMatch[1]!==undefined && parseInt(expMatch[1])>=strExp');
-            console.log(item);
-            //console.log(expMatch[0]+"-"+expMatch[1]);
-          //  let d=parseInt(enddate[1]),y=parseInt(enddate[3]);
-          //  console.log(enddate);
-          //  console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
-            //console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
-            count+=1;
-            this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
-          }
+         //  else if(parseInt(expMatch[0])===0){
+         //    console.log('parseInt(expMatch[1])===strExp');
+         //   console.log(item);
+         //   console.log(expMatch[0]+"-"+expMatch[1]);
+         //   count+=1;
+         // }
         }
-       //  else if(parseInt(expMatch[0])===0){
-       //    console.log('parseInt(expMatch[1])===strExp');
-       //   console.log(item);
-       //   console.log(expMatch[0]+"-"+expMatch[1]);
-       //   count+=1;
-       // }
+       }
+      else {
+        console.log('Not strExp');
+       console.log(item);
+    //   let d=parseInt(enddate[1]);
+      // console.log(enddate);
+       //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
+      // console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
+        count+=1;
+        this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
       }
-     }
-    else {
-      console.log('Not strExp');
-     console.log(item);
-  //   let d=parseInt(enddate[1]);
-    // console.log(enddate);
-     //console.log(d+"-"+monthNo[enddate[0]]+'-'+enddate[3]);
-    // console.log(item.companyname+','+item.title+','+item.jd+','+item.location+','+item.skills+','+item.salary+','+item.enddate+','+item.applylink);
-      count+=1;
-      this.getJobDetails(item.companyname,item.title,item.jd,item.location,item.skills,item.salary,item.experience,item.enddate,item.applylink);
-    }
-  });
-  console.log('count:'+count);
-  }).catch(err=>console.log('ERROR:'+err));
+    });
+    console.log('count:'+count);
+    }).catch(err=>console.log('ERROR:'+err));
   }
   getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,jexp,japply,jlink){
     let jobDataTag=document.createElement('p');
