@@ -10,6 +10,12 @@ class QuizOn{
     document.getElementById('timeCounter').innerHTML = 9 + ":" + 59;
     var self=this;
   }
+  initialAccess(){
+    document.getElementsByClassName('total-que').innerHTML=' ';
+    document.getElementById("optionBtn").innerHTML=' ';
+    document.getElementsByClassName('total-que').innerHTML=' ';
+    //document.getElementById('startModal').showModal();
+  }
   //navbar icon start
   barAccess() {
     if (this.bar.style.display == "block") {
@@ -58,7 +64,7 @@ $.fn.clickedOption=function(id, que, qset,qid) {
         console.log(userAns);
       }
     }
-};
+  };
 $(document).ready(function() {
   let qcount = 10,op = 4,count = 0,nextPrev = 1,ansRet;
   let opArr=['a','b','c','d'];
