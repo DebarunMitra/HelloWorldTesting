@@ -3,7 +3,6 @@
 // objective: Create a quiz application
 class QuizOn{
   constructor(){
-    //this.userAns = [];
     this.st=0;
     this.sec=0;
     this.bar = document.getElementById('myLinks');
@@ -14,7 +13,6 @@ class QuizOn{
     document.getElementsByClassName('total-que').innerHTML=' ';
     document.getElementById("optionBtn").innerHTML=' ';
     document.getElementsByClassName('total-que').innerHTML=' ';
-    //document.getElementById('startModal').showModal();
   }
   //navbar icon start
   barAccess() {
@@ -76,7 +74,6 @@ $(document).ready(function() {
   $("#optionBtn").empty();
   $('.questions').html(' ');
   $('#startModal').modal('show');
-
   /*question load  start*/
   $('.start-btn').click(function() {
       $.ajax({
@@ -89,7 +86,7 @@ $(document).ready(function() {
          });
          getQuestions(1);
     });
-    /*question load  end*/
+/*question load  end*/
 /*question-option show start*/
 let getQuestions = function(qc) {
     $("#optionBtn").empty();
@@ -116,7 +113,6 @@ let getQuestions = function(qc) {
         $('.submit-btn,.prev').css("display", "block");
       }
       if(JSON.stringify(userAns[nextPrev-1])!==undefined){
-          //console.log('from next:['+nextPrev+']'+JSON.stringify(this.userAns[nextPrev-1].opid));
           let sop=JSON.stringify(userAns[nextPrev-1].opid);
           $("#"+parseInt(sop)).css("border","solid");
           $("#"+parseInt(sop)).css("outline","0 !important");
@@ -144,7 +140,6 @@ let getQuestions = function(qc) {
       $('.next').css("display","block");
       $('.submit-btn').css("display","none");
       if(JSON.stringify(userAns[nextPrev-1])!==undefined){
-        //  console.log('from next:['+nextPrev+']'+JSON.stringify(userAns[nextPrev-1].opid));
           let sop=JSON.stringify(userAns[nextPrev-1].opid);
           $("#"+parseInt(sop)).css("border","solid");
           $("#"+parseInt(sop)).css("outline","0 !important");
