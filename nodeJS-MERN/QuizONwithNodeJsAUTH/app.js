@@ -10,7 +10,7 @@ app.set('view engine','ejs');
 
 //routes
 app.use('/',require('./routes/index'));
-app.use('/user',require('./routes/users'));
+app.use('/users',require('./routes/users'));
 //app.use('/',require('./routes/index'));
 
 
