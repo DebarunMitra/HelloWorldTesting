@@ -1,5 +1,9 @@
 const express=require('express');
 const router=express.Router();
+const bcrypt=require('bcryptjs');
+//user model
+const User=require('../models/User');
+
 
 //login page
 router.get('/login',(req,res)=>res.render('login'));//res.send('Login')
@@ -29,11 +33,23 @@ router.post('/register',(req,res)=>{
 
   if(errors.length>0){
     res.render('register',{
-      errors,name,email,password,password2
+      errors,name,email,password,password2/*{name:name,emsil:email,password:password,password2:password2}, we are using shorthand*/
     });
   }
   else{
-    res.send('pass');
+    //res.send('pass');
+    //validation passed
+    User.findOne({email:email}).then(user=>{
+      if(user){
+        //user exist
+            errors.push({msg:'User Already registered'});
+            res.render('register',{
+              errors,name,email,password,password2
+            });
+      }else{
+
+      }
+    });
   }
 });
 
