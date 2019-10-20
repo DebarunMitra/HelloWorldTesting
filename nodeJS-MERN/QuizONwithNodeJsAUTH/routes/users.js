@@ -53,7 +53,7 @@ router.post('/register',(req,res)=>{
           name,email,password
         });
       //  console.log(newUser);
-      //  res.send('hellow newUser');
+      //  res.send('hello newUser');
       bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
