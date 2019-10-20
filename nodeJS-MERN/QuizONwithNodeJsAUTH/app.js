@@ -16,7 +16,7 @@ app.use(expressLayouts);
 app.set('view engine','ejs');
 
 //bodyparser
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended: true}))
 
 //routes
 app.use('/',require('./routes/index'));

@@ -47,7 +47,26 @@ router.post('/register',(req,res)=>{
               errors,name,email,password,password2
             });
       }else{
-
+        const newUser=new User({
+          name,email,password
+        });
+      //  console.log(newUser);
+      //  res.send('hellow newUser');
+      bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save()
+              .then(user => {
+                // req.flash(
+                //   'success_msg',
+                //   'You are now registered and can log in'
+                // );
+                res.redirect('/users/login');
+              })
+              .catch(err => console.log(err));
+          });
+        });
       }
     });
   }
