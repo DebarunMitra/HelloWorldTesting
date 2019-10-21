@@ -60,4 +60,4 @@ router.post('/login', async (req,res)=>{
 });
 
 
-//module.exports=router;//shift to posts.js
+module.exports=router;//shift to posts.js

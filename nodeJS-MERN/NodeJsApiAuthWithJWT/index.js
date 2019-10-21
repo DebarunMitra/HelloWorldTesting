@@ -7,7 +7,7 @@ const bodyParser=require('body-parser');
 
 //import routes
 const authRoute=require('./routes/auth');
-//const postRoute=require('./routes/posts');
+const postRoute=require('./routes/posts');
 
 
 
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 //route middleware
 app.use('/api/user',authRoute);
-//app.use('/api/posts',postRoute);//get auth-token
+app.use('/api/posts',postRoute);//get auth-token
 
 
 const PORT=5020;
