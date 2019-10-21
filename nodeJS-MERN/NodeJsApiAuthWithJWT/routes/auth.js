@@ -33,7 +33,8 @@ const hashPassword=await bcrypt.hash(req.body.password,salt);
     const savedUser= await user.save();
   //  console.log(savedUser);
     //console.log('success');
-     res.send(savedUser);
+    // res.send(savedUser);
+    res.send({user:user._id});
    }catch(err){
      res.status(400).send('ERROR: '+err);
    }
