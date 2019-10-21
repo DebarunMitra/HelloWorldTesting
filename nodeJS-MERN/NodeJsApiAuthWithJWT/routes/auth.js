@@ -1,6 +1,6 @@
 const router=require('express').Router();
 const User=require('../models/User');
-const {registerValidation}=require('../validation');
+const {registerValidation,loginValidation}=require('../validation');
 const bcrypt=require('bcryptjs');
 
 
@@ -39,5 +39,19 @@ const hashPassword=await bcrypt.hash(req.body.password,salt);
      res.status(400).send('ERROR: '+err);
    }
 });
+
+router.post('/login', async (req,res)=>{
+  const { error } = loginValidation(req.body);
+  if (error){  res.status(400).send(error.details[0].message); }
+
+  const user= await User.findOne({email:req.body.email});
+
+  if(!user) return   res.status(400).send('User not found...');
+  const validPass=await bcrypt.compare(req.body.password,user.password);
+  if(!validPass) return res.status(400).send('Invalid Password');
+
+  res.send('Logged In...');
+});
+
 
 module.exports=router;
