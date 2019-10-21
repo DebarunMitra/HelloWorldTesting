@@ -1,49 +1,42 @@
 const router=require('express').Router();
 
 const User=require('../models/User');
-
-//validation
-const Joi=require('@hapi/joi');
-
-const registerValidation = data => {
-  const schema = Joi.object({
-    name: Joi.string()
-      .min(3)
-      .required(),
-    email: Joi.string()
-      .min(6)
-      .required()
-      .email(),
-    password: Joi.string()
-      .min(6)
-      .required()
-  });
-  return schema.validate(data);
-};
+const {registerValidation}=require('../validation');
+const bcrypt=require('bcryptjs');
 
 
 router.post('/register', async (req,res)=>{//async wait until the data save into the db.
 //  res.send('Register');
 //validate the data before create new user
-const { error } = registerValidation(req.body);
+  const { error } = registerValidation(req.body);
   if (error){
-    console.log(error.details[0].message);
+    //console.log(error.details[0].message);
     res.status(400).send(error.details[0].message);
    }//validation returns a big data set, to get error msg, use {error}
+   // else{
+   //   res.status(200).send('success');
+   // }
 
-  // const user=new User({
-  //   name:req.body.name,
-  //   email:req.body.email,
-  //   password:req.body.password
-  // });
-  // try{
-  //   const savedUser= await user.save();
-  // //  console.log(savedUser);
-  //   //console.log('success');
-  //   res.send(savedUser);
-  //  }catch(err) {
-  //    res.status(400).send('ERROR: '+err);
-  //  }
+const emailExist= await User.findOne({email:req.body.email});
+  if(emailExist) return   res.status(400).send('Email alrady exists');
+
+//hash password
+const salt=await
+
+   //create a new user
+  const user=new User({
+    name:req.body.name,
+    email:req.body.email,
+    password:req.body.password
+  });
+  try{
+    const savedUser= await user.save();
+  //  console.log(savedUser);
+    //console.log('success');
+    res.send(savedUser);
+   }catch(err) {
+     res.status(400).send('ERROR: '+err);
+   }
 });
 
 module.exports=router;
