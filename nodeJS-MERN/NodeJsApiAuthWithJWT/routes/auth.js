@@ -2,6 +2,7 @@ const router=require('express').Router();
 const User=require('../models/User');
 const {registerValidation,loginValidation}=require('../validation');
 const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
 
 
 router.post('/register', async (req,res)=>{//async wait until the data save into the db.
