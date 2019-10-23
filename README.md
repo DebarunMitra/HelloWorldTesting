@@ -1,3 +1,3 @@
 # FACEprogradProgram
 It is local working folder copy of atom IDE. 
-version 1.1
+version 1.2
