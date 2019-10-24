@@ -24,7 +24,7 @@ const keys = require('./config/keys');
 
 //helper handlebars
 const {
-  truncate,stripTags,formatDate
+  truncate,stripTags,formatDate,select
 }=require('./helpers/hbs')
 
 // Map global promises
@@ -45,7 +45,8 @@ app.engine('handlebars', exphbs({
   helpers:{
     truncate:truncate,
     stripTags:stripTags,
-    formatDate:formatDate
+    formatDate:formatDate,
+    select:select
   },
   defaultLayout:'main'
 }));
