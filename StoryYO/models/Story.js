@@ -11,6 +11,10 @@ const StorySchema = new Schema({
     type: String,
     required: true
   },
+  topic: {
+    type: String,
+    default:'public'
+  },
   status: {
     type: String,
     default:'public'

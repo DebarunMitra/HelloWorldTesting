@@ -47,6 +47,7 @@ router.post('/',(req,res)=>{
     title:req.body.title,
     body:req.body.body,
     status:req.body.status,
+    topic:req.body.topic,
     allowComments:allowComments,
     user:req.user.id
   };
