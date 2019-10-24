@@ -33,6 +33,17 @@ router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
+//edit stories
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+  Story.findOne({
+    _id:req.params.id
+  }).then((story) => {
+    res.render('stories/edit',{
+      story:story
+    });
+});
+
+
 //process add Story
 router.post('/',(req,res)=>{
   //console.log(req.body);
