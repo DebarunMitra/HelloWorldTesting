@@ -19,10 +19,12 @@ Story.find({status:'public'}).populate('user').then(stories=>{
 router.get('/show/:id',(req,res)=>{
   Story.findOne({
     _id:req.params.id
-  }).then((story) => {
+  }).populate('user').then((story) => {
     res.render('stories/show',{
       story:story
     })
+        //console.log(story);
+        //console.log(story.user.image);
   })
 });
 
@@ -48,6 +50,7 @@ router.post('/',(req,res)=>{
     allowComments:allowComments,
     user:req.user.id
   };
+  //console.log(newStory);
   //save story object into the db
     new Story(newStory).save().then((story) => {
       res.redirect(`/stories/show/${story.id}`);
