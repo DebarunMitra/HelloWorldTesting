@@ -25,7 +25,7 @@ router.get('/show/:id',(req,res)=>{
     })
         //console.log(story);
         //console.log(story.user.image);
-  })
+  });
 });
 
 // Add Story Form
@@ -40,7 +40,8 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   }).then((story) => {
     res.render('stories/edit',{
       story:story
-    });
+    })
+  });
 });
 
 
