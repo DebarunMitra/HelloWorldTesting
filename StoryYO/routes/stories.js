@@ -51,7 +51,7 @@ router.post('/',(req,res)=>{
   //save story object into the db
     new Story(newStory).save().then((story) => {
       res.redirect(`/stories/show/${story.id}`);
-      console.log(story.id);
+      //console.log(story.id);
     }).catch((err) =>console.log('Story Error:'+err));
 });
 
