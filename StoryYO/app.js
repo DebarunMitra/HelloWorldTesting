@@ -2,13 +2,14 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const body-parser = require('body-parser');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
 // Load User Model
 require('./models/User');
+require('./models/Story');
 
 // Passport Config
 require('./config/passport')(passport);
