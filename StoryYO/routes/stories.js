@@ -71,4 +71,34 @@ router.post('/',(req,res)=>{
     }).catch((err) =>console.log('Story Error:'+err));
 });
 
+//edit form process
+router.put('/:id',(req,res)=>{
+  Story.findOne({
+    _id:req.params.id
+  }).then((story) => {
+    if(req.body.allowComments){
+      allowComments=true;
+    }else{
+      allowComments=false;
+    }
+    //new values
+    story.title=req.body.title;
+    story.topic=req.body.topic;
+    story.status=req.body.status;
+    story.allowComments=allowComments;
+    story.body=req.body.body;
+
+    story.save().then(story=>{
+      res.redirect('/dashboard');
+    });
+  });
+});
+
+//delete story from db
+router.delete('/:id',(req,res)=>{
+  Story.remove({_id:req.parems.id}).then(()=>{
+    res.redirect('/dashboard');
+  });
+});
+
 module.exports = router;
