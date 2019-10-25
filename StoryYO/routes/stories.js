@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 const User=mongoose.model('users');
 const Story=mongoose.model('stories');
 const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
+const Article=require('../analyser/analysis');
 
 // Stories Index
 router.get('/', (req, res) => {
@@ -22,15 +23,28 @@ router.get('/show/:id',(req,res)=>{
   }).populate('user').then((story) => {
     res.render('stories/show',{
       story:story
-    })
-        //console.log(story);
-        //console.log(story.user.image);
+    });
   });
 });
 
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
+});
+
+// rank your article
+router.get('/rank/:id',(req,res)=>{
+  Story.findOne({
+    _id:req.params.id
+  }).populate('user').then((story) => {
+    let analysis=new Article();
+    //console.log();
+    let newWord=analysis.getStory(story.body);
+    res.render('stories/rank',{
+      story:story
+      //newWord:newWord
+    });
+  });
 });
 
 //edit stories
