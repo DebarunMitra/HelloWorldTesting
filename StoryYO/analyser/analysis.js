@@ -1,9 +1,14 @@
 const Gramma = require("gramma");
 class Article{
-  grammerAndSpellCheck(story){
+  constructor(storyBody,title,topic){
+    this.storyBody=storyBody;
+    this.title=title;
+    this.topic=topic;
+  }
+  grammerAndSpellCheck(){
     //console.log(story);
     //return story.replace(/<(?:.|\n)*?>/gm, '');
-    let mainText=story.replace(/<(?:.|\n)*?>/gm, '');
+    let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
     let sen=mainText.split('.');
     let sl=sen.length;
     console.log(sen[3]);
@@ -12,9 +17,6 @@ class Article{
       //console.log(value);
       console.log(value.matches[0]);
     });
-  }
-  grammar(result){
-    return result;
   }
 }
 
