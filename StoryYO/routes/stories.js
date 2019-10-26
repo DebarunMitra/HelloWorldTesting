@@ -37,9 +37,9 @@ router.get('/rank/:id',(req,res)=>{
   Story.findOne({
     _id:req.params.id
   }).populate('user').then((story) => {
-    let analysis=new Article();
+    let analysis=new Article(story.body,story.title,story.topic);
     //console.log();
-    let newWord=analysis.grammerAndSpellCheck(story.body);
+    let newWord=analysis.grammerAndSpellCheck();
     res.render('stories/rank',{
       story:story
       //newWord:newWord
