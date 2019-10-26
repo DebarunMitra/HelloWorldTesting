@@ -3,7 +3,8 @@ const mongoose=require('mongoose');
 const User=mongoose.model('users');
 const Story=mongoose.model('stories');
 class Article{
-  constructor(storyBody,title,topic){
+  constructor(storyId,storyBody,title,topic){
+    this.storyId=storyId;
     this.storyBody=storyBody;
     this.title=title;
     this.topic=topic;
