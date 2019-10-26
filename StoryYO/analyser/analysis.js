@@ -22,6 +22,9 @@ class Article{
 
   }
   contentCheck(){
+
+  }
+  addNewWord(){
     
   }
 }
