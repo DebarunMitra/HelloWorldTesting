@@ -1,4 +1,7 @@
 const Gramma = require("gramma");
+const mongoose=require('mongoose');
+const User=mongoose.model('users');
+const Story=mongoose.model('stories');
 class Article{
   constructor(storyBody,title,topic){
     this.storyBody=storyBody;
@@ -18,14 +21,14 @@ class Article{
       console.log(value.matches[0]);
     });
   }
-  words(){
+  wordSentences(){
 
   }
   contentCheck(){
 
   }
-  addNewWord(){
-    
+  newWord(){
+
   }
 }
 
