@@ -39,7 +39,7 @@ router.get('/rank/:id',(req,res)=>{
   }).populate('user').then((story) => {
     let analysis=new Article();
     //console.log();
-    let newWord=analysis.getStory(story.body);
+    let newWord=analysis.grammerAndSpellCheck(story.body);
     res.render('stories/rank',{
       story:story
       //newWord:newWord
