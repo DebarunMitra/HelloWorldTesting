@@ -18,6 +18,12 @@ class Article{
       console.log(value.matches[0]);
     });
   }
+  words(){
+
+  }
+  contentCheck(){
+    
+  }
 }
 
 module.exports = Article;
