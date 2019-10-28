@@ -40,7 +40,9 @@ class Article{
     let para=this.storyBody.split(/<(?:.)*?>/gm);
     paragraphNo=Math.floor(para.length/2);
     let sentencesNo=sen.length;
-    
+    for(let i=0;i<sentencesNo;i++){
+      let wordCount=sen[i].split(' ');
+      count+=wordCount.length;
   }
   contentCheck(){
 
