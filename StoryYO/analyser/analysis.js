@@ -34,7 +34,8 @@ class Article{
     //return Promise.resolve(grammar).then((value) =>{console.log(value);return value;});
   }
   wordSentences(){
-    
+    let count=0,senWordCount=0,paragraphNo;
+    let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
   }
   contentCheck(){
 
