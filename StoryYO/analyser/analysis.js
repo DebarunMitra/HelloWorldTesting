@@ -48,6 +48,13 @@ class Article{
         if(!this.words.hasOwnProperty(key)){
           this.words[key]=1;
         }
+        else if(this.words.hasOwnProperty(key)){
+          let keyValue=this.words[key];
+          keyValue+=1;
+          this.words[key]=keyValue;
+        }
+       }
+    }
   }
   contentCheck(){
 
