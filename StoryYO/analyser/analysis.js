@@ -39,6 +39,8 @@ class Article{
     let sen=mainText.split('.');
     let para=this.storyBody.split(/<(?:.)*?>/gm);
     paragraphNo=Math.floor(para.length/2);
+    let sentencesNo=sen.length;
+    
   }
   contentCheck(){
 
