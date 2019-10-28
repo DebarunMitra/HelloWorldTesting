@@ -43,6 +43,11 @@ class Article{
     for(let i=0;i<sentencesNo;i++){
       let wordCount=sen[i].split(' ');
       count+=wordCount.length;
+      for(let j=0;j<wordCount.length;j++){
+         let key= wordCount[j].replace(/[`~!@#$%^&*()_|+\=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        if(!this.words.hasOwnProperty(key)){
+          this.words[key]=1;
+        }
   }
   contentCheck(){
 
