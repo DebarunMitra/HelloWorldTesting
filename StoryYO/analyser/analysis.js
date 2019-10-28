@@ -8,6 +8,11 @@ class Article{
     this.storyBody=storyBody;
     this.title=title;
     this.topic=topic;
+    this.noWords=['is','are','am','have','had','was','were','be','been','can','could','shall','should','will','would'];
+    this.wordCount=0;
+    this.grammar=new Object();
+    this.sentenceCount=0;
+    this.words=new Object();
   }
   grammerAndSpellCheck(){
     //console.log(story);
@@ -17,19 +22,25 @@ class Article{
     let sl=sen.length;
     console.log(sen[3]);
     console.log('No of sentences:'+(sl-1));
-    Gramma.check('I have been work for 12 day.').then((value) => {
+    let grammar=Gramma.check('I have been work for 12 day.').then((value) => {
       //console.log(value);
-      console.log(value.matches[0]);
+      //console.log(value.matches[0]);
+      //let grammar=value.matches[0];
+      this.grammar={"matches":value.matches[0]};
+          console.log(this.grammar.matches);
     });
+    console.log(this.grammar);
+  //  return grammar;
+    //return Promise.resolve(grammar).then((value) =>{console.log(value);return value;});
   }
   wordSentences(){
-
+    
   }
   contentCheck(){
 
   }
   newWord(){
-
+    return this.words;
   }
 }
 
