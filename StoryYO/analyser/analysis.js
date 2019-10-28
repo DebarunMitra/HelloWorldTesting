@@ -36,6 +36,9 @@ class Article{
   wordSentences(){
     let count=0,senWordCount=0,paragraphNo;
     let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
+    let sen=mainText.split('.');
+    let para=this.storyBody.split(/<(?:.)*?>/gm);
+    paragraphNo=Math.floor(para.length/2);
   }
   contentCheck(){
 
