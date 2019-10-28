@@ -34,15 +34,23 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 
 // rank your article
 router.get('/rank/:id',(req,res)=>{
+  let sId=req.params.id;
   Story.findOne({
     _id:req.params.id
   }).populate('user').then((story) => {
-    let analysis=new Article(req.params.id,story.body,story.title,story.topic);
+    let analysis=new Article(sId,story.body,story.title,story.topic);
+    var sv;
     //console.log();
-    let newWord=analysis.grammerAndSpellCheck();
+    let graSpell=analysis.grammerAndSpellCheck();
+    //let contentCheck=analysis.contentCheck();
+    //contentCheck.then((value) => {console.log(value);});
+    let wordSen=analysis.wordSentences();
+    let newWord=analysis.newWord();
     res.render('stories/rank',{
-      story:story
-      //newWord:newWord
+      story:story,
+      //newWord:newWord,
+      wordSen:wordSen,
+      words:JSON.stringify(newWord)
     });
   });
 });
