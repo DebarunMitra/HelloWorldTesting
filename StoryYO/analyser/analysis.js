@@ -55,6 +55,11 @@ class Article{
         }
        }
     }
+    //  console.log(this.words);
+  //  console.log(Object.keys(this.words).length);
+    this.wordCount=count-1;
+    this.sentenceCount=sentencesNo-1;
+    return ((sentencesNo-1)+':'+(count-1)+':'+paragraphNo);
   }
   contentCheck(){
 
