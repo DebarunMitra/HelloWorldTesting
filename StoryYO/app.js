@@ -25,7 +25,7 @@ const keys = require('./config/keys');
 
 //helper handlebars
 const {
-  truncate,stripTags,formatDate,select,wordNo,senNo,paragraphNo,eachProperty,readingTime,speakingTime
+  truncate,stripTags,formatDate,select,wordNo,senNo,paragraphNo,eachProperty,readingTime,speakingTime,promiseHandle
 }=require('./helpers/hbs')
 
 // Map global promises
@@ -56,7 +56,8 @@ app.engine('handlebars', exphbs({
     paragraphNo:paragraphNo,
     eachProperty:eachProperty,
     readingTime:readingTime,
-    speakingTime:speakingTime
+    speakingTime:speakingTime,
+    promiseHandle:promiseHandle
   },
   defaultLayout:'main'
 }));

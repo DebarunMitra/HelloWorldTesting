@@ -39,16 +39,14 @@ router.get('/rank/:id',(req,res)=>{
     _id:req.params.id
   }).populate('user').then((story) => {
     let analysis=new Article(sId,story.body,story.title,story.topic);
-    var sv;
-    //console.log();
     let graSpell=analysis.grammerAndSpellCheck();
     //let contentCheck=analysis.contentCheck();
-    //contentCheck.then((value) => {console.log(value);});
+  //  graSpell.then((value) => {console.log(value);});
     let wordSen=analysis.wordSentences();
     let newWord=analysis.newWord();
     res.render('stories/rank',{
       story:story,
-      //newWord:newWord,
+      graSpell:graSpell,
       wordSen:wordSen,
       words:JSON.stringify(newWord)
     });

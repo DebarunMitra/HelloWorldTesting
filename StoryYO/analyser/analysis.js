@@ -19,18 +19,19 @@ class Article{
     //return story.replace(/<(?:.|\n)*?>/gm, '');
     let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
     let sen=mainText.split('.');
-    let sl=sen.length;
-    console.log(sen[3]);
-    console.log('No of sentences:'+(sl-1));
-    let grammar=Gramma.check('I have been work for 12 day.').then((value) => {
-      //console.log(value);
-      //console.log(value.matches[0]);
-      //let grammar=value.matches[0];
-      this.grammar={"matches":value.matches[0]};
-          console.log(this.grammar.matches);
-    });
-    console.log(this.grammar);
-  //  return grammar;
+    let sentencesNo=sen.length;
+    // for(let i=0;i<sentencesNo;i++){
+    //   this.grammar+=Gramma.check(sen[i]).then((value) => {
+    //     console.log(value);
+    //     //console.log(value.matches[0]);
+    //     //let grammar=value.matches[0];
+    //     //this.grammar={"matches":value.matches[0]};
+    //       //  console.log(this.grammar.matches);
+    //       return value.matches[0]
+    //   });
+    // }
+  //  console.log(this.grammar);
+    //return this.grammar;
     //return Promise.resolve(grammar).then((value) =>{console.log(value);return value;});
   }
   wordSentences(){
