@@ -10,7 +10,8 @@ class Article{
     this.topic=topic;
     this.noWords=['is','are','am','have','had','was','were','be','been','can','could','shall','should','will','would'];
     this.wordCount=0;
-    this.grammar=new Object();
+    this.grammar=new Array();
+    this.count=0;
     this.sentenceCount=0;
     this.words=new Object();
   }
@@ -18,21 +19,23 @@ class Article{
     //console.log(story);
     //return story.replace(/<(?:.|\n)*?>/gm, '');
     let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
-    let sen=mainText.split('.');
+    let sen=mainText.split('.');let result;
     let sentencesNo=sen.length;
-    // for(let i=0;i<sentencesNo;i++){
-    //   this.grammar+=Gramma.check(sen[i]).then((value) => {
+    for(let i=0;i<sentencesNo-1;i++){
+    Gramma.check(sen[i]).then((value)=>{
     //     console.log(value);
-    //     //console.log(value.matches[0]);
-    //     //let grammar=value.matches[0];
-    //     //this.grammar={"matches":value.matches[0]};
-    //       //  console.log(this.grammar.matches);
-    //       return value.matches[0]
-    //   });
-    // }
-  //  console.log(this.grammar);
-    //return this.grammar;
-    //return Promise.resolve(grammar).then((value) =>{console.log(value);return value;});
+        if(value.matches[0]){
+          this.collectMistakes(value.matches[0].message,value.matches[0].shortMessage,value.matches[0].word);
+        }
+      //return value.matches[0];
+          //console.log('Object: '+this.grammar[0]);
+          //return this.grammar;
+       });
+       if(i===(sentencesNo-2)){
+         // console.log(this.getError());
+          //return this.getError();
+       }
+     }
   }
   wordSentences(){
     let count=0,senWordCount=0,paragraphNo;
@@ -60,13 +63,30 @@ class Article{
   //  console.log(Object.keys(this.words).length);
     this.wordCount=count-1;
     this.sentenceCount=sentencesNo-1;
-    return ((sentencesNo-1)+':'+(count-1)+':'+paragraphNo);
+    let point=this.point(this.sentenceCount,this.wordCount,paragraphNo);
+  //  console.log(point);
+    return ((sentencesNo-1)+':'+(count-1)+':'+paragraphNo+':'+point);
   }
-  contentCheck(){
-
+  collectMistakes(description,issueType,word){
+    console.log(description+','+issueType+','+word);
+    this.grammar[this.count]={"description":description,"issueType":issueType,"word":word};
+  //  console.log(this.grammar[this.count]);
+    this.count+=1;
+  }
+  getMistakes(){
+    console.log(this.grammar);
+    return this.grammar;
   }
   newWord(){
     return this.words;
+  }
+  point(sen,word,para){
+    let time=((word/200)*60 + (word/130)*60)/2;
+    let avgWordPerSen=(Object.keys(this.words).length)/sen;
+    let paraPoint=avgWordPerSen*para;
+    let totalPoint=time+avgWordPerSen+paraPoint;
+    //console.log((time+avgWordPerSen+paraPoint));
+    return totalPoint.toFixed(3);
   }
 }
 
