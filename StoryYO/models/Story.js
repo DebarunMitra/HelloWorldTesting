@@ -19,6 +19,10 @@ const StorySchema = new Schema({
     type: String,
     default:'public'
   },
+  point:{
+    type: Number,
+    default:0
+  },
   allowComments: {
     type: Boolean,
     default:true
