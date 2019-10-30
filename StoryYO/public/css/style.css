@@ -37,6 +37,9 @@ footer{
   padding:20px;
   font-weight: 100px;
 }
+.pointSection{
+  height: 300px;
+}
 .content-value{
   font-size: 15px;
   padding:20px;

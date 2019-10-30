@@ -39,14 +39,11 @@ router.get('/rank/:id',(req,res)=>{
     _id:req.params.id
   }).populate('user').then((story) => {
     let analysis=new Article(sId,story.body,story.title,story.topic);
-    //let contentCheck=analysis.contentCheck();
-  //  graSpell.then((value) => {console.log(value);});
-  console.log(story.id);
     let wordSen=analysis.wordSentences();
     let newWord=analysis.newWord();
     let getErr=analysis.getMistakes();
     let graSpell=analysis.grammerAndSpellCheck();
-    console.log('first:'+graSpell);
+    //console.log('first:'+graSpell);
     //console.log(getErr[0]);
     res.render('stories/rank',{
       story:story,
@@ -58,7 +55,17 @@ router.get('/rank/:id',(req,res)=>{
 });
 
 //save article points
-
+router.put('/point/:id/:point', (req,res)=>{
+  Story.findOne({
+    _id:req.params.id
+  }).then((story) => {
+    //new values
+    story.point=req.params.point;
+    story.save().then(story=>{
+      res.redirect('/dashboard');
+    });
+  });
+});
 
 
 //edit stories
@@ -124,7 +131,7 @@ router.put('/:id',(req,res)=>{
 
 //delete story from db
 router.delete('/:id',(req,res)=>{
-  Story.remove({_id:req.parems.id}).then(()=>{
+  Story.remove({_id:req.params.id}).then(()=>{
     res.redirect('/dashboard');
   });
 });
