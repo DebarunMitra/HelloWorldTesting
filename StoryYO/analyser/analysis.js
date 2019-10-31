@@ -19,23 +19,31 @@ class Article{
     //console.log(story);
     //return story.replace(/<(?:.|\n)*?>/gm, '');
     let mainText=this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
-    let sen=mainText.split('.');let result;
+    let sen=mainText.split('.');
+    var promisValue;
     let sentencesNo=sen.length;
     for(let i=0;i<sentencesNo-1;i++){
-    Gramma.check(sen[i]).then((value)=>{
+    promisValue=Gramma.check(sen[i]).then((value)=>{
     //     console.log(value);
         if(value.matches[0]){
           this.collectMistakes(value.matches[0].message,value.matches[0].shortMessage,value.matches[0].word);
         }
-      //return value.matches[0];
-          //console.log('Object: '+this.grammar[0]);
-          //return this.grammar;
-       });
-       if(i===(sentencesNo-2)){
-         // console.log(this.getError());
-          //return this.getError();
-       }
+                // console.log(this.grammar);
+                return this.grammar;
+      });
      }
+
+    // console.log(promisValue);
+     let result=promisValue.then((value)=>{console.log(value);});
+     // let result=function(promisValue){
+     //   return new Promise(function(resolve,reject) {
+     //     setTimeout(function() {
+     //       console.log('resolving...');
+     //       resolve({data:promisValue})
+     //     },1000);
+     //   });
+     // };
+    console.log(result);
   }
   wordSentences(){
     let count=0,senWordCount=0,paragraphNo;
@@ -68,7 +76,7 @@ class Article{
     return ((sentencesNo-1)+':'+(count-1)+':'+paragraphNo+':'+point);
   }
   collectMistakes(description,issueType,word){
-    console.log(description+','+issueType+','+word);
+    //console.log(description+','+issueType+','+word);
     this.grammar[this.count]={"description":description,"issueType":issueType,"word":word};
   //  console.log(this.grammar[this.count]);
     this.count+=1;
