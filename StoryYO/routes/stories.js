@@ -41,13 +41,13 @@ router.get('/rank/:id',(req,res)=>{
     let analysis=new Article(sId,story.body,story.title,story.topic);
     let wordSen=analysis.wordSentences();
     let newWord=analysis.newWord();
-    let getErr=analysis.getMistakes();
+    //let getErr=analysis.getMistakes();
     let graSpell=analysis.grammerAndSpellCheck();
     //console.log('first:'+graSpell);
-    //console.log(getErr[0]);
+    //console.log(getErr);
     res.render('stories/rank',{
       story:story,
-      graSpell:graSpell,
+      //graSpell:graSpell,
       wordSen:wordSen,
       words:JSON.stringify(newWord)
     });
