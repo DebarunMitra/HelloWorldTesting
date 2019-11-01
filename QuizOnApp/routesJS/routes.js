@@ -1,3 +1,4 @@
+const path=require('path');//to access public directory
 class Question
 {
   constructor(count){
@@ -53,6 +54,10 @@ class Question
 }
 module.exports = (app, db) => {
   let noq=10;
+
+  //select Question set
+
+
   //randon question answar set
   app.get('/ranQue',(req,res)=>{
               let dbVal;
