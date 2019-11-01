@@ -91,8 +91,8 @@ module.exports = (app, db) => {
         const qno=new Question(noq);
         let len=que[0].questions.length,no=0;
         let pointAns=qno.checkAns(topic,question,len,reqData,reqData.length-1);
-        console.log(pointAns);
-       res.send(JSON.stringify(pointAns));
+        //console.log(pointAns);
+        res.send(JSON.stringify(pointAns));
       });
     }
   });
