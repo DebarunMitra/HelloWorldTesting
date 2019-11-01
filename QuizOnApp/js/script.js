@@ -64,12 +64,21 @@ $.fn.clickedOption=function(id, que, qset,qid) {
     }
   };
 $(document).ready(function() {
-  let qcount = 10,op = 4,count = 0,nextPrev = 1,ansRet;
+  let qcount = 8,op = 4,count = 0,nextPrev = 1,ansRet,topic;
   let opArr=['a','b','c','d'];
   let gradeMsg = ["Improve!!", "GOOD", "GREAT!!"];
   let checkRepeat = new Array();
   let qo=new QuizOn();
   checkRepeat = [];
+  $('.topic').click(function(){
+    let id=$(this).attr('id');
+    let value=$('#'+id).attr('value');
+    $(this).css('background','green');
+    $(this).css('color','white');
+    $('.topic').hide();
+    $('#'+id).show();
+    topic=value;
+  });
   /*initial load start*/
   let initialLoad=function(){
     $('.total-que').html(qcount);
@@ -80,18 +89,30 @@ $(document).ready(function() {
   initialLoad();
   /*initial load end*/
   /*question load  start*/
-  $('.start-btn').click(function() {
-      $.ajax({
-           url:'http://localhost:5020/ranQue/'
-         }).done(function(data) {
-             $('#startModal').modal('hide');
-          //   $('#instruction').css("display", "block");
-             localStorage.setItem('qSet',data);
-          //   qo.startTimer();
-         });
-         getQuestions(1);
+  $('.play-btn').click(function() {
+      $('#startModal').modal('hide');
     });
 /*question load  end*/
+
+/*start play*/
+$('.start-btn').click(function() {
+  let topicData={"topic":topic};
+    $.ajax({
+         url:'http://localhost:5020/ranQue/',
+         data:JSON.stringify(topicData),
+         type:'POST',
+         dataType : "json",
+         contentType: "application/json"
+       }).done(function(data) {
+           //$('#startModal').modal('hide');
+           localStorage.setItem('qSet',JSON.stringify(data));
+           $('#selectTopic').css("display", "none");
+           $('#instruction,#timeCounter').css("display", "block");
+           qo.startTimer();
+       });
+       getQuestions(1);
+  });
+/*start play*/
 /*question-option show start*/
 let getQuestions = function(qc) {
     $("#optionBtn").empty();
