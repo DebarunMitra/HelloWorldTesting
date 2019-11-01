@@ -36,11 +36,55 @@ objective: Create a quiz application
           </div>
       </div>
     </nav>
-    <div id="instruction" class="container" style="display:block;">
+
+    <div id="selectTopic" class="container" style="display:block;">
       <div style="padding:30px;" class="row d-flex d-flex align-items-center flex-column">
         <table class="table">
-                               <td class="ins-head">Instructions</td>
-                           <tbody>
+              <td class="ins-head">Select Quiz Topic</td>
+        </table>
+      </div>
+      <div class="row">
+        <div class="card">
+            <i class="fa fa-users icon-size"></i>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+
+          <div class="card">
+              <i class="fa fa-users icon-size"></i>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card">
+                <i class="fa fa-users icon-size"></i>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+      </div>
+      <div class="row">
+  <div class="col"></div>
+  <div class="col-md-auto">
+    <button class="next-go" type="button" name="button">Done</button>
+  </div>
+  <div class="col col-lg-4"></div>
+  </div>
+      </div>
+
+    <div id="instruction" class="container" style="display:none;">
+      <div style="padding:30px;" class="row d-flex d-flex align-items-center flex-column">
+        <table class="table">
+              <td class="ins-head">Instructions</td>
+                      <tbody>
                              <tr>
                                <td><b>Points:</b>20</td>
                                <td><b>Questions:</b>  10</td>
@@ -48,7 +92,7 @@ objective: Create a quiz application
                              </tr>
                              <tr>
                                <td><b>Correct answer:</b>   +1</td>
-                              <td></td>
+                               <td></td>
                                <td><b>Wrong answer:</b>  0</td>
                              </tr>
                       </tbody></table>
@@ -151,7 +195,7 @@ objective: Create a quiz application
         </div>
         <!-- quit modal stop -->
         <!-- startPage Modal start -->
-        <div class="modal fade" id="startModal">
+        <div class="modal fade" id="startModal" data-keyboard="false" data-backdrop="static">
           <div class="modal-dialog">
             <div class="modal-content">
               <!-- Modal body -->
@@ -171,6 +215,10 @@ objective: Create a quiz application
                               <img class="name-logo" src="images/startName.PNG" alt="start name">
                         </div>
                     <div class="col col-lg-end"></div>
+                </div>
+                <div class="col-md-auto">
+                  <!--button class="next-go" type="button" name="button">Next</button-->
+                  <!--div class=""><input id="" type="button" class="option" onclick="" name="Option" value="Personality"/></div-->
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-start"></div>
