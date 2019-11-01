@@ -222,6 +222,14 @@ let getQuestions = function(qc) {
   });
   /*quit stop*/
   $('.review-ans').click(function() {
-    location.reload();
+    if($('#reviewAns').css('display') === 'none'){
+     $('#reviewAns').css('display','block');
+     $('.review-ans').html('Close Review Answers');
+     
+  } else {
+    $('#reviewAns').css('display','none');
+    $('.review-ans').html('Open Review Answers');
+  }
+  //  location.reload();
   });
 });
