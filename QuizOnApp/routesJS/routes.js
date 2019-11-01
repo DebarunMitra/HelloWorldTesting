@@ -53,22 +53,25 @@ class Question
   }
 }
 module.exports = (app, db) => {
-  let noq=10;
+  var noq=8,topic;
 
   //select Question set
 
 
   //randon question answar set
-  app.get('/ranQue',(req,res)=>{
+  app.post('/ranQue',(req,res)=>{
+    //console.log(req.body.topic);
               let dbVal;
-              db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
+              topic=req.body.topic;
+              db.find({"q_set":topic},{projection:{"_id":0,"questions":1}},(err, result) => {
                    (err===true)?console.log(err + " this error has occured"):(dbVal=result.toArray());
               });
               dbVal.then(que=>{
               let question=que[0].questions;
               const qno=new Question(noq);
               let len=que[0].questions.length,no=0;
-              let getQandO=qno.randomQueSet('per',question,len);
+              let getQandO=qno.randomQueSet(topic,question,len);
+              //console.log(JSON.stringify(getQandO));
               res.send(JSON.stringify(getQandO));
             });
           });
@@ -76,16 +79,17 @@ module.exports = (app, db) => {
   //check answer
   app.post('/checkAns',(req,res)=>{
     let reqData=req.body;
+    topic=reqData[0].q_set;
     if(reqData){
       let userAns;
-      db.find({"q_set":"per"},{projection:{"_id":0,"questions":1}},(err, result) => {
+      db.find({"q_set":topic},{projection:{"_id":0,"questions":1}},(err, result) => {
            (err===true)?console.log(err + " this error has occured"):(userAns=result.toArray());
       });
         userAns.then(que=>{
         let question=que[0].questions;
         const qno=new Question(noq);
         let len=que[0].questions.length,no=0;
-        let point=qno.checkAns('per',question,len,reqData,reqData.length-1);
+        let point=qno.checkAns(topic,question,len,reqData,reqData.length-1);
        res.send(String(point));
       });
     }
