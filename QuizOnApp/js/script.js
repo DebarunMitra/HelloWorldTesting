@@ -59,7 +59,7 @@ $.fn.clickedOption=function(id, que, qset,qid) {
         $('#'+id).css('outline' , "none");;
         $('#'+id).css('border-color' ,"#374176");
         localStorage.setItem("ans",JSON.stringify(userAns));
-        console.log(userAns);
+        //console.log(userAns);
       }
     }
   };
@@ -197,7 +197,11 @@ let getQuestions = function(qc) {
     data:ans,
     url:'http://localhost:5020/checkAns'
   }).done((data)=>{
-   point=parseInt(data);
+   //pointWithAns=JSON.parse(data);
+  // console.log(data.quizAnswars);
+   //console.log(data.quizPoint);
+   point=parseInt(data.quizPoint);
+   localStorage.setItem('quizAnswars',JSON.stringify(data.quizAnswars));
      if (point < 5) {
        $('.grade').html(gradeMsg[0]);
      } else if (point == 5) {
@@ -225,7 +229,12 @@ let getQuestions = function(qc) {
     if($('#reviewAns').css('display') === 'none'){
      $('#reviewAns').css('display','block');
      $('.review-ans').html('Close Review Answers');
-     
+     let quizQuestions= localStorage.getItem("qSet");
+     let userAns=localStorage.getItem("ans");
+     let quizAns=localStorage.getItem("quizAnswars");
+     console.log(quizQuestions);
+     console.log(userAns);
+     console.log(quizAns);
   } else {
     $('#reviewAns').css('display','none');
     $('.review-ans').html('Open Review Answers');
