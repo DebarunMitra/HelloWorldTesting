@@ -7,6 +7,7 @@ class Question
     this.questions=[];
     this.point=0;
     this.ansSet=[];
+    this.ansWithPoint=[];
   }
   randomQueSet(qsetId,question,length){
     let no=Math.floor(Math.random() * (length-1));
@@ -34,29 +35,23 @@ class Question
     else{
       if(uans[ual]!==null){
         let uaQid=uans[ual].qid,uaAns=uans[ual].ans;
-        this.point=question.filter(item => item.qid===uaQid).map((qset)=>{
+        this.ansWithPoint=question.filter(item => item.qid===uaQid).map((qset)=>{
          if(qset.ans===uaAns){
               this.ansSet[ual]={qid:qset.qid,ans:qset.ans};
               this.point+=1;ual-=1;
-              //console.log(qset);
-            //  console.log(qset.qid+','+qset.ans);
               return this.checkAns(qsetId,question,length,uans,ual);
          }
          else{
               this.ansSet[ual]={qid:qset.qid,ans:qset.ans};
               ual-=1;
-              console.log(qset);
-            //  console.log(qset.qid+','+qset.ans);
              return this.checkAns(qsetId,question,length,uans,ual);
            }
         });
-      //  console.log(this.ansSet);
-        return this.point;
+      return {quizAnswars:this.ansSet,quizPoint:this.point};
       }
       else {
         this.ansSet[ual]={qid:qsetId,ans:'Not Attained'};
         ual-=1;
-        //console.log(qset);
         return this.checkAns(qsetId,question,length,uans,ual);
       }
     }
@@ -64,10 +59,6 @@ class Question
 }
 module.exports = (app, db) => {
   var noq=8,topic;
-
-  //select Question set
-
-
   //randon question answar set
   app.post('/ranQue',(req,res)=>{
     //console.log(req.body.topic);
@@ -99,8 +90,9 @@ module.exports = (app, db) => {
         let question=que[0].questions;
         const qno=new Question(noq);
         let len=que[0].questions.length,no=0;
-        let point=qno.checkAns(topic,question,len,reqData,reqData.length-1);
-       res.send(String(point));
+        let pointAns=qno.checkAns(topic,question,len,reqData,reqData.length-1);
+        console.log(pointAns);
+       res.send(JSON.stringify(pointAns));
       });
     }
   });
