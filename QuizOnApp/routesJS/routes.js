@@ -6,6 +6,7 @@ class Question
     this.qno=[];
     this.questions=[];
     this.point=0;
+    this.ansSet=[];
   }
   randomQueSet(qsetId,question,length){
     let no=Math.floor(Math.random() * (length-1));
@@ -35,18 +36,27 @@ class Question
         let uaQid=uans[ual].qid,uaAns=uans[ual].ans;
         this.point=question.filter(item => item.qid===uaQid).map((qset)=>{
          if(qset.ans===uaAns){
+              this.ansSet[ual]={qid:qset.qid,ans:qset.ans};
               this.point+=1;ual-=1;
+              //console.log(qset);
+            //  console.log(qset.qid+','+qset.ans);
               return this.checkAns(qsetId,question,length,uans,ual);
          }
          else{
-             ual-=1;
+              this.ansSet[ual]={qid:qset.qid,ans:qset.ans};
+              ual-=1;
+              console.log(qset);
+            //  console.log(qset.qid+','+qset.ans);
              return this.checkAns(qsetId,question,length,uans,ual);
            }
         });
+      //  console.log(this.ansSet);
         return this.point;
       }
       else {
+        this.ansSet[ual]={qid:qsetId,ans:'Not Attained'};
         ual-=1;
+        //console.log(qset);
         return this.checkAns(qsetId,question,length,uans,ual);
       }
     }
