@@ -229,12 +229,19 @@ let getQuestions = function(qc) {
     if($('#reviewAns').css('display') === 'none'){
      $('#reviewAns').css('display','block');
      $('.review-ans').html('Close Review Answers');
-     let quizQuestions= localStorage.getItem("qSet");
-     let userAns=localStorage.getItem("ans");
-     let quizAns=localStorage.getItem("quizAnswars");
+     let quizQuestions=JSON.parse(localStorage.getItem("qSet"));
+     let userAns=JSON.parse(localStorage.getItem("ans"));
+     let quizAns=JSON.parse(localStorage.getItem("quizAnswars"));
      console.log(quizQuestions);
      console.log(userAns);
      console.log(quizAns);
+     for(let i=0;i<qcount;i++){
+       let review='<div class="row d-flex d-flex align-items-center flex-column">'+
+         '<p id="quizQue" class="questions">'+(i+1)+') '+quizQuestions[i].q+'</p>'+
+       '<div class="">Your Answer: <input id="" type="button" class="option" name="Option" value="'+userAns[i].ans+'"/></div>'+
+       '<div class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer: <input id="" type="button" class="option" name="Option" value="'+quizAns[i].ans+'"/></div></div>';
+       $('#reView').append(review).last();
+     }
   } else {
     $('#reviewAns').css('display','none');
     $('.review-ans').html('Open Review Answers');
