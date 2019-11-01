@@ -70,19 +70,24 @@ $(document).ready(function() {
   let checkRepeat = new Array();
   let qo=new QuizOn();
   checkRepeat = [];
-  $('.total-que').html(qcount);
-  $("#optionBtn").empty();
-  $('.questions').html(' ');
-  $('#startModal').modal('show');
+  /*initial load start*/
+  let initialLoad=function(){
+    $('.total-que').html(qcount);
+    $("#optionBtn").empty();
+    $('.questions').html(' ');
+    $('#startModal').modal('show');
+  };
+  initialLoad();
+  /*initial load end*/
   /*question load  start*/
   $('.start-btn').click(function() {
       $.ajax({
            url:'http://localhost:5020/ranQue/'
          }).done(function(data) {
              $('#startModal').modal('hide');
-             $('#instruction').css("display", "block");
+          //   $('#instruction').css("display", "block");
              localStorage.setItem('qSet',data);
-             qo.startTimer();
+          //   qo.startTimer();
          });
          getQuestions(1);
     });
