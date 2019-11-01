@@ -64,7 +64,7 @@ $.fn.clickedOption=function(id, que, qset,qid) {
     }
   };
 $(document).ready(function() {
-  let qcount = 8,op = 4,count = 0,nextPrev = 1,ansRet,topic;
+  let qcount = 8,op = 4,count = 0,nextPrev = 1,ansRet,topic='';
   let opArr=['a','b','c','d'];
   let gradeMsg = ["Improve!!", "GOOD", "GREAT!!"];
   let checkRepeat = new Array();
@@ -96,21 +96,25 @@ $(document).ready(function() {
 
 /*start play*/
 $('.start-btn').click(function() {
-  let topicData={"topic":topic};
-    $.ajax({
-         url:'http://localhost:5020/ranQue/',
-         data:JSON.stringify(topicData),
-         type:'POST',
-         dataType : "json",
-         contentType: "application/json"
-       }).done(function(data) {
-           //$('#startModal').modal('hide');
-           localStorage.setItem('qSet',JSON.stringify(data));
-           $('#selectTopic').css("display", "none");
-           $('#instruction,#timeCounter').css("display", "block");
-           qo.startTimer();
-       });
-       getQuestions(1);
+    if(topic!==''){
+      let topicData={"topic":topic};
+        $.ajax({
+             url:'http://localhost:5020/ranQue/',
+             data:JSON.stringify(topicData),
+             type:'POST',
+             dataType : "json",
+             contentType: "application/json"
+           }).done(function(data) {
+               localStorage.setItem('qSet',JSON.stringify(data));
+               $('#selectTopic').css("display", "none");
+               $('#instruction,#timeCounter').css("display", "block");
+               qo.startTimer();
+           });
+           getQuestions(1);
+    }
+    else{
+      alert('Select quiz Topic');
+    }
   });
 /*start play*/
 /*question-option show start*/
