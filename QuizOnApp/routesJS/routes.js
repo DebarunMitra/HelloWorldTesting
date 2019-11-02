@@ -38,7 +38,7 @@ class Question
         this.ansWithPoint=question.filter(item => item.qid===uaQid).map((qset)=>{
          if(qset.ans===uaAns){
               this.ansSet[ual]={qid:qset.qid,ans:qset.ans};
-              this.point+=1;ual-=1;
+              this.point+=2;ual-=1;
               return this.checkAns(qsetId,question,length,uans,ual);
          }
          else{
@@ -61,7 +61,6 @@ module.exports = (app, db) => {
   var noq=8,topic;
   //randon question answar set
   app.post('/ranQue',(req,res)=>{
-    //console.log(req.body.topic);
               let dbVal;
               topic=req.body.topic;
               db.find({"q_set":topic},{projection:{"_id":0,"questions":1}},(err, result) => {
