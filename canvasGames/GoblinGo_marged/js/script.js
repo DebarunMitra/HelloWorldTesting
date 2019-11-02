@@ -10,6 +10,7 @@ class Player{
       this.y=y;
       this.inputKey=(type ==="player-1")?[65,68,87,83]:[37,39,38,40];
     }
+    /*put players into canvas start*/
     putPlayer(canvasCtx,a,b){
        let p=new Image();
        p.src=(this.type==='player-1')?'images/player-1.png':'images/player-2.png';
@@ -17,6 +18,7 @@ class Player{
          canvasCtx.drawImage(p,a,b);
        }
      }
+     /*put players into canvas end*/
   }
   class Goblin{
     constructor(type,x,y)
@@ -25,6 +27,7 @@ class Player{
       this.x=x;
       this.y=y;
     }
+    /*put goblinGO into canvas start*/
     putGoblin(gCtx,gx,gy)
     {
       let g=new Image();
@@ -33,6 +36,7 @@ class Player{
       gCtx.drawImage(g,gx,gy);
       }
     }
+    /*put goblinGO into canvas end*/
   }
   class Game{
       constructor(canvas,width, height){
@@ -47,6 +51,7 @@ class Player{
           document.addEventListener('keydown',this.keyPress.bind(this));
           document.addEventListener('keyup',this.keyPress.bind(this));
       }
+      /*create playground start*/
       makeBase(){
         let ground=new Image();
         ground.src='images/playGround.png';
@@ -54,6 +59,8 @@ class Player{
         this.ctx.drawImage(ground,0,0);
         }
       }
+      /*create playground end*/
+      /*create players randomly start*/
       createPlayers(name,type,x,y){
         let dx=(type==='player-1')?(Math.floor(Math.random()*(x/3)/2)):(Math.floor(Math.random()*(x-((x/3)/2))));
         let dy=(type==='player-1')?(Math.floor(Math.random()*(y/3)/2)):(Math.floor(Math.random()*(y-((y/3)/2))));
@@ -69,6 +76,8 @@ class Player{
         document.getElementById("player1Score").innerHTML=player1Sc;
         document.getElementById("player2Score").innerHTML=player2Sc;
       }
+      /*create players randomly start*/
+      /*create goblin randomly start*/
        createGoblin(w,h){
           (w>500 && h>500)?w=h=400:(h>480)?h-=20:(w>480)?w-=20:true;
           w=Math.floor(Math.random()*(w));
@@ -77,6 +86,8 @@ class Player{
          gob.putGoblin(this.ctx,w,h);
          this.goblin[0]=gob;
        }
+       /*create goblin randomly end*/
+    /*key press event identify start*/
       keyPress(e){
           this.makeBase();
           this.players.filter((data) =>(data.inputKey.includes(e.keyCode))).map((mainItem) =>
@@ -97,7 +108,9 @@ class Player{
            this.positionCheck();
       });
     }
+    /*key press event identify end*/
     /*
+    goblin position start
     positionCheck():- checks the collition between goblin and players
     1) change the goblin position when the players and goblin x-axis difference is 40 and y-axis difference is 70
     */
@@ -121,7 +134,8 @@ class Player{
        }
 
     }
-    
+    /*goblin position end*/
+    /*game time start*/
     startTimer() {
            let time_in_minutes = 1;
            let current_time = Date.parse(new Date());
@@ -154,6 +168,7 @@ class Player{
            }
                run_clock('timer',deadline);
    }
+   /*game time end*/
   }
   let goblinGO=document.getElementById('myCanvas');
   let game=new Game(goblinGO,550,550);
