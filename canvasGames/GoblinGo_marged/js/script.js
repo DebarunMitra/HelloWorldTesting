@@ -97,6 +97,10 @@ class Player{
            this.positionCheck();
       });
     }
+    /*
+    positionCheck():- checks the collition between goblin and players
+    1) change the goblin position when the players and goblin x-axis difference is 40 and y-axis difference is 70
+    */
     positionCheck()
     {
        if(((Math.abs(this.goblin[0].x-this.players[0].x))<=40) && ((Math.abs(this.goblin[0].y-this.players[0].y))<=70))
@@ -117,6 +121,7 @@ class Player{
        }
 
     }
+    
     startTimer() {
            let time_in_minutes = 1;
            let current_time = Date.parse(new Date());
