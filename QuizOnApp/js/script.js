@@ -80,6 +80,21 @@ $(document).ready(function() {
   let checkRepeat = new Array();
   let qo = new QuizOn();
   checkRepeat = [];
+  /*sign up section start*/
+  $('.login div:nth-child(3) p:nth-child(1)').click(function(){
+    $('.login').fadeOut(100);
+    $('.registration').fadeIn(200);
+  });
+  /*sign up section end*/
+  /*sign in section start*/
+  $('.registration div:nth-child(5) p:nth-child(1)').click(function(){
+    $('.registration').fadeOut(100);
+    $('.login').fadeIn(200);
+  });
+  /*sign in section end*/
+
+
+
   /*select topic start*/
   $('.topic').click(function() {
     let id = $(this).attr('id');
