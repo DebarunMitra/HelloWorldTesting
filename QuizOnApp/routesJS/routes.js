@@ -59,6 +59,13 @@ class Question
 }
 module.exports = (app, db) => {
   var noq=8,topic;
+  
+  app.post('/login',(req,res)=>{
+    //console.log(req.body);
+  });
+
+
+
   //randon question answar set
   app.post('/ranQue',(req,res)=>{
               let dbVal;
