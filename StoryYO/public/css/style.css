@@ -13,6 +13,9 @@ main {
 }
 .bar-color{
   background-color:#279c63;
+  position: sticky;
+  top:0;
+  z-index: 1;
 }
 footer{
   margin-top:20px;
