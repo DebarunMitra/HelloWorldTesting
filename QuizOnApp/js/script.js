@@ -93,7 +93,37 @@ $(document).ready(function() {
   });
   /*sign in section end*/
 
+  /*registration end*/
+  $('#signup').click(function(){
+    if($('#userName').val()!=='' && $('#email').val()!=='' && $('#pass').val()!=='' && $('#conPass').val()!==''){
+      if($('#pass').val()===$('#conPass').val()){
+          let userData={name:$('#userName').val(),email:$('#email').val(),password:$('#pass').val()};
+        //  alert(JSON.stringify(userData));
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(userData),
+            contentType:'application/json',
+            url: 'http://localhost:5020/login'
+          }).done((data) => {
+            console.log(data);
+          }).fail((xhr, textStatus, errorThrown) => {
+            console.log("ERROR: ", xhr.responseText)
+            return xhr.responseText;
+          });
 
+      }
+      else{
+        $('.regMsg').html('Password Does not match !!');
+        $('#conPass').css('border','1px solid red');
+        $('#conPass').val('');
+      }
+     }
+     else{
+    //   $('#userName,#email,#pass,#conPass').css('border','1px solid red');
+       $('.regMsg').html('Please Fill All The Fields !!');
+     }
+  });
+  /*registration end*/
 
   /*select topic start*/
   $('.topic').click(function() {
@@ -116,9 +146,9 @@ $(document).ready(function() {
   initialLoad();
   /*initial load end*/
   /*question load  start*/
-  $('.play-btn').click(function() {
-    $('#startModal').modal('hide');
-  });
+  // $('.play-btn').click(function() {
+  //   $('#startModal').modal('hide');
+  // });
   /*question load  end*/
 
   /*start play*/
