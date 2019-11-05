@@ -97,7 +97,6 @@ $(document).ready(function() {
   $('#signin').click(function(){
     if($('#email').val()!=='' && $('#pass').val()!==''){
           let userData={email:$('#email').val(),password:$('#pass').val()};
-        //  alert(JSON.stringify(userData));
         $.ajax({
             type: 'POST',
             data: JSON.stringify(userData),
