@@ -94,6 +94,34 @@ $(document).ready(function() {
   /*sign in section end*/
 
   /*registration end*/
+  $('#signin').click(function(){
+    if($('#email').val()!=='' && $('#pass').val()!==''){
+          let userData={email:$('#email').val(),password:$('#pass').val()};
+        //  alert(JSON.stringify(userData));
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(userData),
+            contentType:'application/json',
+            url: 'http://localhost:5020/login'
+          }).done((data) => {
+            if(data){
+              console.log(data);
+              localStorage.setItem('authToken',JSON.stringify(data));
+              $('#startModal').modal('hide');
+            }
+          }).fail((xhr, textStatus, errorThrown) => {
+            console.log("ERROR: ", xhr.responseText)
+            return xhr.responseText;
+          });
+     }
+     else{
+       $('.regMsg').html('Please Fill All The Fields !!');
+     }
+  });
+  /*login end*/
+
+
+  /*registration end*/
   $('#signup').click(function(){
     if($('#userName').val()!=='' && $('#email').val()!=='' && $('#pass').val()!=='' && $('#conPass').val()!==''){
       if($('#pass').val()===$('#conPass').val()){
