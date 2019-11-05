@@ -58,6 +58,12 @@ module.exports = (app, db) => {
     }).catch(err => console.log("Error occured while checking email for availability " + err));
   });
 
+
+  //login api start
+router.post('/login',(req,res)=>{
+  
+});
+
   //randon question answar set
   app.post('/ranQue', (req, res) => {
     var dbVal;
