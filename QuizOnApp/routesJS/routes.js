@@ -72,6 +72,11 @@ app.post('/login',(req,res)=>{
                       username : user.username,
                       email: user.email
                     }
+                    jsonwt.sign(payload,key,{expiresIn:10800},(err,token) => {
+                      if(err) throw err;
+                      res.json({success : true,token : "Bearer "+ token});
+                    })
+                  }
 });
 
   //randon question answar set
