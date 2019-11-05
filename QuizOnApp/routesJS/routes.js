@@ -5,21 +5,21 @@ const passport = require('passport');
 const key = require('../config/key').secret;
 const mongoose = require('mongoose');
 const Questions = mongoose.model('questions');
-const Users = mongoose.model('users');
+const Users = mongoose.model('user');
 const Question=require('./Question');
 module.exports = (app, db) => {
   var noq=8,topic;
 
   app.post('/registration',(req,res)=>{
     console.log(req.body);
-    User.findOne({email:req.body.email}).then(user=>{
+    Users.findOne({email:req.body.email}).then(user=>{
         if(user)
         {
           return res.status(400).json({exist:'User with the same username already exists'});
         }
         else
             {
-                const newUser = new User({
+                const newUser = new Users({
                 name:req.body.name,
                 email : req.body.email,
                 password:req.body.password
