@@ -1,14 +1,58 @@
 const path=require('path');//to access public directory
+const bcrypt = require('bcrypt');
+const jsonwt = require('jsonwebtoken');
+const passport = require('passport');
+const key = require('../config/key').secret;
 const mongoose = require('mongoose');
 const Questions = mongoose.model('questions');
+const Users = mongoose.model('users');
 const Question=require('./Question');
 module.exports = (app, db) => {
   var noq=8,topic;
 
   app.post('/registration',(req,res)=>{
     console.log(req.body);
+    User.findOne({email:req.body.email}).then(user=>{
+        if(user)
+        {
+          return res.status(400).json({exist:'User with the same username already exists'});
+        }
+        else
+            {
+                const newUser = new User({
+                name:req.body.name,
+                email : req.body.email,
+                password:req.body.password
+              });
 
-    res.send(JSON.stringify(req.body));
+              //Encrypting password using bcrypt
+              bcrypt.genSalt(10,(err,salt) => {bcrypt.hash(newUser.password,salt,(err,hash) => {
+              //Storing the hashed password in newUser
+              if(err)
+                throw err;
+              newUser.password = hash;
+              newUser.save().then(user => {
+                                            if(user)
+                                            {
+                                                const savedDetails = {
+                                                    id : user.id,
+                                                    username : user.username,
+                                                    email: user.email
+                                                }
+                                                jsonwt.sign(savedDetails,key,{
+                                                  expiresIn:10800
+                                                  },(err,token) => {
+                                                      if(err) throw err;
+                                                    res.json({success : true,token : "Bearer "+ token});
+                                                  }
+                                           )
+                                       }
+                                   })
+                                   .catch(err => console.log("Error occure while storing user after hashing password "+err));
+                                 })
+                      });
+                }
+          }).catch(err => console.log("Error occured while checking email for availability "+err));
   });
 
   //randon question answar set
@@ -26,7 +70,7 @@ module.exports = (app, db) => {
                     //console.log(JSON.stringify(getQandO));
                     res.send(JSON.stringify(getQandO));
                   }
-              });
+              }).catch(err=>console.log('Random Question Finding Error !!'+err));
           });
 
   //check answer
