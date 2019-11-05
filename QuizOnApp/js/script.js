@@ -107,7 +107,8 @@ $(document).ready(function() {
           }).done((data) => {
             if(data){
               console.log(data);
-                 $('#startModal').modal('hide');
+              localStorage.setItem('authToken',JSON.stringify(data));
+                $('#startModal').modal('hide');
             }
           }).fail((xhr, textStatus, errorThrown) => {
             console.log("ERROR: ", xhr.responseText)
