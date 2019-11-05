@@ -77,6 +77,11 @@ app.post('/login',(req,res)=>{
                       res.json({success : true,token : "Bearer "+ token});
                     })
                   }
+                  else{
+                        res.status(401).json({failed:'Invalid user credentials'});
+                      }
+                }).catch(err => console.log("error generating token "+err));
+             });
 });
 
   //randon question answar set
