@@ -1,4 +1,4 @@
-const path=require('path');//to access public directory
+const path = require('path'); //to access public directory
 const bcrypt = require('bcrypt');
 const jsonwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -6,90 +6,103 @@ const key = require('../config/key').secret;
 const mongoose = require('mongoose');
 const Questions = mongoose.model('questions');
 const Users = mongoose.model('user');
-const Question=require('./Question');
+const Question = require('./Question');
 module.exports = (app, db) => {
-  var noq=8,topic;
+  var noq = 8,
+    topic;
 
-  app.post('/registration',(req,res)=>{
+//registration api start
+  app.post('/registration', (req, res) => {
     console.log(req.body);
-    Users.findOne({email:req.body.email}).then(user=>{
-        if(user)
-        {
-          return res.status(400).json({exist:'User with the same username already exists'});
-        }
-        else
-            {
-                const newUser = new Users({
-                name:req.body.name,
-                email : req.body.email,
-                password:req.body.password
-              });
+    Users.findOne({
+      email: req.body.email
+    }).then(user => {
+      if (user) {
+        return res.status(400).json({
+          exist: 'User with the same username already exists'
+        });
+      } else {
+        const newUser = new Users({
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password
+        });
 
-              //Encrypting password using bcrypt
-              bcrypt.genSalt(10,(err,salt) => {bcrypt.hash(newUser.password,salt,(err,hash) => {
-              //Storing the hashed password in newUser
-              if(err)
-                throw err;
-              newUser.password = hash;
-              newUser.save().then(user => {
-                                            if(user)
-                                            {
-                                                const savedDetails = {
-                                                    id : user.id,
-                                                    username : user.username,
-                                                    email: user.email
-                                                }
-                                                jsonwt.sign(savedDetails,key,{
-                                                  expiresIn:10800
-                                                  },(err,token) => {
-                                                      if(err) throw err;
-                                                    res.json({success : true,token : "Bearer "+ token});
-                                                  }
-                                           )
-                                       }
-                                   })
-                                   .catch(err => console.log("Error occure while storing user after hashing password "+err));
-                                 })
-                      });
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err)
+              throw err;
+            newUser.password = hash;
+            newUser.save().then(user => {
+                if (user) {
+                  const savedDetails = {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email
+                  }
+                  jsonwt.sign(savedDetails, key, {
+                    expiresIn: 15000
+                  }, (err, token) => {
+                    if (err) throw err;
+                    res.json({
+                      success: true,
+                      token: "Bearer " + token
+                    });
+                  })
                 }
-          }).catch(err => console.log("Error occured while checking email for availability "+err));
+              })
+              .catch(err => console.log("Error occure while storing user after hashing password " + err));
+          })
+        });
+      }
+    }).catch(err => console.log("Error occured while checking email for availability " + err));
   });
 
   //randon question answar set
-  app.post('/ranQue',(req,res)=>{
-              var dbVal;
-              topic=req.body.topic;
-              Questions.find({"q_set":topic},{"_id": 0,"questions": 1},(err,result)=>{
-                if(err===true)
-                  console.log(err + " this error has occured");
-                  else {
-                    let question=result[0].questions;
-                    const qno=new Question(noq);
-                    let len=result[0].questions.length;
-                    let getQandO=qno.randomQueSet(topic,question,len);
-                    //console.log(JSON.stringify(getQandO));
-                    res.send(JSON.stringify(getQandO));
-                  }
-              }).catch(err=>console.log('Random Question Finding Error !!'+err));
-          });
+  app.post('/ranQue', (req, res) => {
+    var dbVal;
+    topic = req.body.topic;
+    Questions.find({
+      "q_set": topic
+    }, {
+      "_id": 0,
+      "questions": 1
+    }, (err, result) => {
+      if (err === true)
+        console.log(err + " this error has occured");
+      else {
+        let question = result[0].questions;
+        const qno = new Question(noq);
+        let len = result[0].questions.length;
+        let getQandO = qno.randomQueSet(topic, question, len);
+        //console.log(JSON.stringify(getQandO));
+        res.send(JSON.stringify(getQandO));
+      }
+    }).catch(err => console.log('Random Question Finding Error !!' + err));
+  });
 
   //check answer
-  app.post('/checkAns',(req,res)=>{
-    let reqData=req.body;
-    topic=reqData[0].q_set;
-    if(reqData){
+  app.post('/checkAns', (req, res) => {
+    let reqData = req.body;
+    topic = reqData[0].q_set;
+    if (reqData) {
       let userAns;
-      Questions.find({"q_set":topic},{"_id":0,"questions":1},(err, result) => {
-        if(err===true)
+      Questions.find({
+        "q_set": topic
+      }, {
+        "_id": 0,
+        "questions": 1
+      }, (err, result) => {
+        if (err === true)
           console.log(err + " this error has occured");
-          else {
-            let question=result[0].questions;
-            const qno=new Question(noq);
-            let len=result[0].questions.length;
-            let pointAns=qno.checkAns(topic,question,len,reqData,reqData.length-1);
-            //console.log(pointAns);
-            res.send(JSON.stringify(pointAns));
-          }
+        else {
+          let question = result[0].questions;
+          const qno = new Question(noq);
+          let len = result[0].questions.length;
+          let pointAns = qno.checkAns(topic, question, len, reqData, reqData.length - 1);
+          //console.log(pointAns);
+          res.send(JSON.stringify(pointAns));
+        }
       });
     }
   });
