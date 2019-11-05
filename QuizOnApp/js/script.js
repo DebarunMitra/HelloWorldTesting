@@ -103,9 +103,12 @@ $(document).ready(function() {
             type: 'POST',
             data: JSON.stringify(userData),
             contentType:'application/json',
-            url: 'http://localhost:5020/login'
+            url: 'http://localhost:5020/registration'
           }).done((data) => {
-            console.log(data);
+            if(data){
+              console.log(data);
+                 $('#startModal').modal('hide');
+            }
           }).fail((xhr, textStatus, errorThrown) => {
             console.log("ERROR: ", xhr.responseText)
             return xhr.responseText;
@@ -164,7 +167,8 @@ $(document).ready(function() {
         dataType: "json",
         contentType: "application/json"
       }).done(function(data) {
-        localStorage.setItem('qSet', JSON.stringify(data));
+      //  console.log(data);
+        localStorage.setItem('qSet',JSON.stringify(data));
         $('#selectTopic').css("display", "none");
         $('#instruction,#timeCounter').css("display", "block");
         qo.startTimer();
