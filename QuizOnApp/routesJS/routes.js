@@ -65,7 +65,7 @@ app.post('/login',(req,res)=>{
              .then(user => {
                  if(!user)
                     return res.status(404).send({"Error" : "User already with the same name already exists"});
-                bcrypt.compare(password,user.password).then(correct =>{
+                bcrypt.compare(req.body.password,user.password).then(correct =>{
                   if(correct){
                     const payload = {
                       id : user.id,
