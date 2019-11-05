@@ -61,7 +61,8 @@ module.exports = (app, db) => {
 
   //login api start
 router.post('/login',(req,res)=>{
-  
+  console.log(req.body);
+    res.send(JSON.stringify(req.body));
 });
 
   //randon question answar set
