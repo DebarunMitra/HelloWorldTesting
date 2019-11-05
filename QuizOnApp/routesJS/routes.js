@@ -61,8 +61,11 @@ module.exports = (app, db) => {
 
   //login api start
 app.post('/login',(req,res)=>{
-  console.log(req.body);
-    res.send(JSON.stringify(req.body));
+  Users.findOne({email:req.body.email})
+             .then(user => {
+                 if(!user)
+                    return res.status(404).send({"Error" : "User already with the same name already exists"});
+                  });
 });
 
   //randon question answar set
