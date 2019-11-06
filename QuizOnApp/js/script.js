@@ -104,8 +104,8 @@ $(document).ready(function() {
             url: 'http://localhost:5020/login'
           }).done((data) => {
             if(data){
-              console.log(data);
-              localStorage.setItem('authToken',JSON.stringify(data));
+              console.log(data.token.split(' ')[1]);
+              localStorage.setItem('authToken',data.token.split(' ')[1]);
               $('#startModal').modal('hide');
             }
           }).fail((xhr, textStatus, errorThrown) => {
@@ -133,8 +133,8 @@ $(document).ready(function() {
             url: 'http://localhost:5020/registration'
           }).done((data) => {
             if(data){
-              console.log(data);
-              localStorage.setItem('authToken',JSON.stringify(data));
+              console.log(data.token.split(' ')[1]);
+              localStorage.setItem('authToken',data.token.split(' ')[1]);
                 $('#startModal').modal('hide');
             }
           }).fail((xhr, textStatus, errorThrown) => {
@@ -193,7 +193,11 @@ $(document).ready(function() {
         data: JSON.stringify(topicData),
         type: 'POST',
         dataType: "json",
-        contentType: "application/json"
+        contentType: "application/json",
+        headers: {
+      //   "Content-Type":"application/x-www-form-urlencoded",
+         token:localStorage.getItem("authToken")
+        }
       }).done(function(data) {
       //  console.log(data);
         localStorage.setItem('qSet',JSON.stringify(data));
@@ -285,6 +289,10 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: "application/json",
       data: ans,
+      headers: {
+    //   "Content-Type":"application/x-www-form-urlencoded",
+       token:localStorage.getItem("authToken")
+     },
       url: 'http://localhost:5020/checkAns'
     }).done((data) => {
       point = parseInt(data.quizPoint);
