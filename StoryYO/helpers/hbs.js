@@ -1,4 +1,18 @@
 const moment=require('moment');
+
+let promisedHandlebars = require('promised-handlebars');
+let Q = require('q');
+let Handlebars = promisedHandlebars(require('handlebars'), { Promise: Q.Promise });
+
+//Handlebars.registerHelper('promiseHandle', function (value) {
+//  console.log(value);
+  // return Q.delay(100).then(function () {
+  //   return value;
+  // })
+//});
+
+
+
 module.exports = {
   truncate: function(str, len){
     if (str.length > len && str.length > 0) {
@@ -56,13 +70,24 @@ module.exports = {
     let point=data.split(':');
     return point[3];
   },
-  promiseHandle:function(promise){
-    // var promiseValue;
-    // promise.then((value) => {
-    //   promiseValue=value;
-    //   console.log(value);
-    // });
-    // console.log(promiseValue);
-    // return promiseValue;
+  promiseHandle: function (value) {
+    //var errors=[];
+  //  console.log(value);
+   value.then((value) =>value,(err,res)=>{
+     console.log(res);
+   });
+//      Q.allSettled(value).then(function (results) {
+//       results.forEach(function (result) {
+//         if (result.state === "fulfilled") {
+//             var value = result.value;
+//           //  errors.push(value);
+//             console.log(value);
+//           //  return value;
+//         } else {
+//             var reason = result.reason;
+//             console.log(reason);
+//         }
+//     });
+// });
   }
 }
