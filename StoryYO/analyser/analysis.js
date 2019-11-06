@@ -16,29 +16,26 @@ class Article {
     this.words = new Object();
   }
   grammerAndSpellCheck() {
-    let mainText = this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
-    let sen = mainText.split('.');
-    var promisValue;
-    let sentencesNo = sen.length;
-    for (let i = 0; i < sentencesNo - 1; i++) {
-      promisValue = Gramma.check(sen[i]).then((value) => {
-        //     console.log(value);
-        if (value.matches[0]) {
-          if (this.collectMistakes(value.matches[0].message, value.matches[0].shortMessage, value.matches[0].word)) {
-            //  console.log(this.grammar);
-            return this.grammar;
+      let mainText = this.storyBody.replace(/<(?:.|\n)*?>/gm, '');
+      let sen = mainText.split('.');
+      var promisValue;
+      let sentencesNo = sen.length;
+      for (let i = 0; i < sentencesNo - 1; i++) {
+        promisValue = Gramma.check(sen[i]).then((value) => {
+          //     console.log(value);
+          if (value.matches[0]!==undefined) {
+            if (this.collectMistakes(value.matches[0].message, value.matches[0].shortMessage, value.matches[0].word)) {
+              //  console.log(this.grammar);
+              return this.grammar;
+            }
           }
-        }
-      }, function(err) {
-        console.log(err);
-      });
+        });
+        if(i===sentencesNo - 2)
+            return promisValue;
+      }
     }
-    let result = this.resolvePromise(promisValue);
-    console.log(result);
-    //   result.then((value) => {console.log(value);});
-    // console.log(this.resolvePromise(promisValue));
-    //   return this.resolvePromise(promisValue);
-  }
+
+
   wordSentences() {
     let count = 0,
       senWordCount = 0,
@@ -86,15 +83,17 @@ class Article {
     return this.grammar;
   }
   resolvePromise(data) {
-    return new Promise((resolve, reject) => {
-
-      if (!data) {
-        reject("No error!!");
-        return; // The function execution ends here
-      }
-
-      return Promise.resolve(data);
-    });
+  //  data.then();
+    //console.log(data);
+  //  console.log(data.then((value) =>value));
+    // return new Promise((resolve, reject) => {
+    //   if (!data) {
+    //     reject("No error!!");
+    //     return; // The function execution ends here
+    //   }
+    // console.log(Promise.resolve(data));
+    //   return Promise.resolve(data);
+  //  });
   }
   newWord() {
     return this.words;
