@@ -73,7 +73,7 @@ module.exports = {
   promiseHandle: function (value) {
     //var errors=[];
   //  console.log(value);
-   value.then((value) =>value,(err,res)=>{
+   value.then((value) =>{
      console.log(res);
    });
 //      Q.allSettled(value).then(function (results) {
