@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Questions = mongoose.model('questions');
 const Users = mongoose.model('user');
 const Question = require('./Question');
+const auth = require('../middleware/auth');
 module.exports = (app, db) => {
   var noq = 8,
     topic;
@@ -95,7 +96,9 @@ module.exports = (app, db) => {
   });
 
   //randon question answar set
-  app.post('/ranQue', (req, res) => {
+  app.post('/ranQue',auth,(req, res) => {
+  //  console.log(req.body);
+//    console.log(req.headers);
     var dbVal;
     topic = req.body.topic;
     Questions.find({
@@ -118,7 +121,9 @@ module.exports = (app, db) => {
   });
 
   //check answer
-  app.post('/checkAns', (req, res) => {
+  app.post('/checkAns',auth,(req, res) => {
+     console.log(req.body);
+     console.log(req.headers);
     let reqData = req.body;
     topic = reqData[0].q_set;
     if (reqData) {
