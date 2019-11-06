@@ -49,10 +49,10 @@ router.get('/rank/:id', (req, res) => {
     //let getErr=analysis.getMistakes();
     let graSpell = analysis.grammerAndSpellCheck();
     //graSpell.then((value) => {console.log(value);});
-    //  console.log(graSpell);
+    // console.log(graSpell);
     res.render('stories/rank', {
       story: story,
-      //graSpell:graSpell,
+      graSpell:graSpell,
       wordSen: wordSen,
       words: JSON.stringify(newWord)
     });
@@ -127,7 +127,7 @@ router.put('/:id', (req, res) => {
     story.status = req.body.status;
     story.allowComments = allowComments;
     story.body = req.body.body;
-    
+
     story.save().then(story => {
       res.redirect('/dashboard');
     });
