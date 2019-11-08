@@ -33,11 +33,28 @@
     $(document).ready(() => {
       $('.button-collapse').sideNav();
       $('select').material_select();
-    });
-
-    CKEDITOR.replace('body',{
-      plugins: 'wysiwygarea,toolbar,basicstyles,link'
-    });
+      $('#gra').click(function () {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:5020/stories/graspell',
+            success: function (data) {
+            //  console.log(data);
+              if(data[0]===undefined){
+                $('#grammar').css('color','green').html('Ok');
+                $('#spell').css('color','green').html('Ok');
+              }else{
+                $('#grammar').css('color','red').html('Yes');
+                $('#spell').css('color','red').html('Yes');
+              }
+              //alert(data[0].word);
+              //alert(data[1].word);
+          }
+        });
+  });
+});
+CKEDITOR.replace('body',{
+  plugins: 'wysiwygarea,toolbar,basicstyles,link'
+});
   </script>
 </body>
 </html>
