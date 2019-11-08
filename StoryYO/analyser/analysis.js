@@ -34,8 +34,6 @@ class Article {
             return promisValue;
       }
     }
-
-
   wordSentences() {
     let count = 0,
       senWordCount = 0,
