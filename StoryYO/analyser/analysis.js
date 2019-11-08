@@ -82,19 +82,6 @@ class Article {
     console.log(this.grammar);
     return this.grammar;
   }
-  resolvePromise(data) {
-  //  data.then();
-    //console.log(data);
-  //  console.log(data.then((value) =>value));
-    // return new Promise((resolve, reject) => {
-    //   if (!data) {
-    //     reject("No error!!");
-    //     return; // The function execution ends here
-    //   }
-    // console.log(Promise.resolve(data));
-    //   return Promise.resolve(data);
-  //  });
-  }
   newWord() {
     return this.words;
   }
