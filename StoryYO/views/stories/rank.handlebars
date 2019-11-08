@@ -18,7 +18,8 @@
         <a href="/stories/user/{{story.user.id}}">More From {{story.user.firstName}}</a>
       </div>
     </div>
-    {{promiseHandle graSpell}}
+  </div>
+  <div class="promise">
   </div>
   <div class="rank-section">
     <div class="col s12 m4">
@@ -94,15 +95,18 @@
             <tr>
               <td>Grammar</td>
               <td></td>
-              <td>NA</td>
+              <td><p id="grammar">NA<p></td>
             </tr>
             <tr>
               <td>Spelling</td>
               <td></td>
-              <td>NA</td>
+              <td><p id="spell">NA<p></td>
             </tr>
           </tbody>
         </table>
+        <form class="col s12">
+          <input id="gra" type="button" value="Check Mistakes" class="waves-effect waves-light btn">
+        </form>
         </div>
       </div>
     </div>
