@@ -78,10 +78,6 @@ class Article {
     this.count += 1;
     return true;
   }
-  getMistakes() {
-    console.log(this.grammar);
-    return this.grammar;
-  }
   newWord() {
     return this.words;
   }
