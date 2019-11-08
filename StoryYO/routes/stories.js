@@ -9,9 +9,12 @@ const {
 } = require('../helpers/auth');
 const Article = require('../analyser/analysis');
 
+let promise;
+
 // Stories Index
 router.get('/', (req, res) => {
   //  res.render('stories/index');
+
   Story.find({
     status: 'public'
   }).populate('user').then(stories => {
@@ -48,8 +51,9 @@ router.get('/rank/:id', (req, res) => {
     let newWord = analysis.newWord();
     //let getErr=analysis.getMistakes();
     let graSpell = analysis.grammerAndSpellCheck();
+    promise=graSpell;
     //graSpell.then((value) => {console.log(value);});
-    // console.log(graSpell);
+    console.log(promise);
     res.render('stories/rank', {
       story: story,
       graSpell:graSpell,
@@ -58,6 +62,16 @@ router.get('/rank/:id', (req, res) => {
     });
   });
 });
+
+router.get('/graspell',(req,res)=>{
+  let dataArr=[];
+   promise.then(value=>{
+     console.log(value);
+     res.send(value);
+   });
+  //res.send(promise);
+});
+
 
 //save article points
 router.put('/point/:id/:point', (req, res) => {
