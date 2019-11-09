@@ -42,14 +42,10 @@
             } else {
               $('#grammar').css('color', 'red').html('Yes');
               $('#spell').css('color', 'red').html('Yes');
-              $('#graSpellCheck').css("display", "none");
-              $('#checkMistakes').css("display", "block");
               $('#issueCard').css("display", "block");
-            //  console.log(data[0].word);
-              //alert(data[0]);
-            data.map(value=>{
-                 let row='<div><p>Issue Type:&nbsp;<span>"'+value.description+'"</span>,&nbsp;Issue:<span>"'+value.word+'"</span><p><div>';
-                 $('#issue').append(row).last();
+              data.map(value => {
+                let row = '<div><p>Issue Type:&nbsp;&nbsp;<span style="color:red;">"' + value.description + '"</span>,&nbsp;Issue:&nbsp;&nbsp;<span style="color:red;">"' + value.word + '"</span><p><div>';
+                $('#issue').append(row).last();
               });
             }
           }
