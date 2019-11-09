@@ -53,7 +53,7 @@ router.get('/rank/:id', (req, res) => {
     let graSpell = analysis.grammerAndSpellCheck();
     promise=graSpell;
     //graSpell.then((value) => {console.log(value);});
-    console.log(promise);
+   //console.log(promise);
     res.render('stories/rank', {
       story: story,
       graSpell:graSpell,
@@ -65,8 +65,9 @@ router.get('/rank/:id', (req, res) => {
 
 router.get('/graspell',(req,res)=>{
   let dataArr=[];
+  console.log(promise);
    promise.then(value=>{
-     console.log(value);
+    // console.log(value);
      res.send(value);
    });
   //res.send(promise);
