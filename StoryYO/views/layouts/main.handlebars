@@ -36,10 +36,6 @@
           type: 'get',
           url: 'http://localhost:5020/stories/graspell',
           success: function(data) {
-            //  console.log(data[0]);
-            // data[0].map(value=>{
-        //       alert(data[0]);
-          //  });
             if (data[0] === undefined) {
               $('#grammar').css('color', 'green').html('Ok');
               $('#spell').css('color', 'green').html('Ok');
@@ -48,6 +44,13 @@
               $('#spell').css('color', 'red').html('Yes');
               $('#graSpellCheck').css("display", "none");
               $('#checkMistakes').css("display", "block");
+              $('#issueCard').css("display", "block");
+            //  console.log(data[0].word);
+              //alert(data[0]);
+            data.map(value=>{
+                 let row='<div><p>Issue Type:&nbsp;<span>"'+value.description+'"</span>,&nbsp;Issue:<span>"'+value.word+'"</span><p><div>';
+                 $('#issue').append(row).last();
+              });
             }
           }
         });
