@@ -36,7 +36,10 @@
           type: 'get',
           url: 'http://localhost:5020/stories/graspell',
           success: function(data) {
-            //  console.log(data);
+            //  console.log(data[0]);
+            // data[0].map(value=>{
+        //       alert(data[0]);
+          //  });
             if (data[0] === undefined) {
               $('#grammar').css('color', 'green').html('Ok');
               $('#spell').css('color', 'green').html('Ok');
