@@ -1,18 +1,5 @@
 const moment=require('moment');
 
-let promisedHandlebars = require('promised-handlebars');
-let Q = require('q');
-let Handlebars = promisedHandlebars(require('handlebars'), { Promise: Q.Promise });
-
-//Handlebars.registerHelper('promiseHandle', function (value) {
-//  console.log(value);
-  // return Q.delay(100).then(function () {
-  //   return value;
-  // })
-//});
-
-
-
 module.exports = {
   truncate: function(str, len){
     if (str.length > len && str.length > 0) {
