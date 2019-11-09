@@ -21,16 +21,24 @@ class Article {
     let sentencesNo = sen.length;
     for (let i = 0; i < sentencesNo - 1; i++) {
       promisValue = Gramma.check(sen[i]).then((value) => {
-        //     console.log(value);
+      //  console.log(value.matches[0]);
         if (value.matches[0] !== undefined) {
-          if (this.collectMistakes(value.matches[0].message, value.matches[0].shortMessage, value.matches[0].word)) {
+          this.collectMistakes(value.matches[0].message, value.matches[0].shortMessage, value.matches[0].word);
             //  console.log(this.grammar);
             return this.grammar;
-          }
         }
       });
-      if (i === sentencesNo - 2)
-        return promisValue;
+    //  console.log( promisValue);
+    //  promisValue.then((value) => {console.log(value);});
+     setTimeout(function(){
+       if (i === sentencesNo - 2){
+         console.log( promisValue);
+    //    //  console.log('if '+i);
+    //    //
+    //    // promisValue.then((value) => {console.log(value);});
+          return promisValue;
+       }
+     },2000);
     }
   }
   wordSentences() {
