@@ -25,20 +25,13 @@ class Article {
         if (value.matches[0] !== undefined) {
           this.collectMistakes(value.matches[0].message, value.matches[0].shortMessage, value.matches[0].word);
             //  console.log(this.grammar);
-            return this.grammar;
         }
+        console.log(this.grammar);
+          return this.grammar;
       });
-    //  console.log( promisValue);
-    //  promisValue.then((value) => {console.log(value);});
-     setTimeout(function(){
        if (i === sentencesNo - 2){
-         console.log( promisValue);
-    //    //  console.log('if '+i);
-    //    //
-    //    // promisValue.then((value) => {console.log(value);});
           return promisValue;
        }
-     },2000);
     }
   }
   wordSentences() {
