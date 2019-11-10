@@ -36,7 +36,7 @@ const {
   readingTime,
   speakingTime,
   articlePoint,
-  promiseHandle
+  bgimage
 } = require('./helpers/hbs')
 
 // Map global promises
@@ -74,7 +74,7 @@ app.engine('handlebars', exphbs({
     readingTime: readingTime,
     speakingTime: speakingTime,
     articlePoint: articlePoint,
-    promiseHandle: promiseHandle
+    bgimage:bgimage
   },
   defaultLayout: 'main'
 }));
