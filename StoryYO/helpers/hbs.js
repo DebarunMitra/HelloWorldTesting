@@ -59,5 +59,8 @@ module.exports = {
   },
 bgimage:function(){
   return 'css/content.png';
-}
+  },
+rank:function(stories){
+  console.log(stories);
+  }
 }
