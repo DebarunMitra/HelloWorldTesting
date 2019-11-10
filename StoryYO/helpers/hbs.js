@@ -61,6 +61,10 @@ bgimage:function(){
   return 'css/content.png';
   },
 rank:function(stories){
-  console.log(stories);
+  let totalPoint=0;
+  stories.forEach((value,key)=>{
+    totalPoint+=value.point;
+  });
+  return totalPoint;
   }
 }
