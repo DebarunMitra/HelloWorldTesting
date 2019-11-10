@@ -1,7 +1,4 @@
 body {
-  /* background-image: url("content.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%; */
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -16,17 +13,21 @@ main {
 }
 
 .bar-color {
-  background-color: #279c63;
+  background-color: #00aaff;
 }
-
-.dashboard {}
+.themeImage{
+  padding: 10px;
+  margin-right: -80px;
+  height: 100%;
+  width: 100%;
+}
 
 footer {
   margin-top: 0px;
 }
 
 .footer-color {
-  background-color: #45544d;
+  background-color: #345e73;
 }
 
 .story-text {
