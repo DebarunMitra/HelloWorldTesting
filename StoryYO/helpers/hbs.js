@@ -57,22 +57,7 @@ module.exports = {
     let point=data.split(':');
     return point[3];
   },
-  promiseHandle: async function (value) {
-  // value.then((value) =>{
-    // console.log(value);
-   //});
-//      Q.allSettled(value).then(function (results) {
-//       results.forEach(function (result) {
-//         if (result.state === "fulfilled") {
-//             var value = result.value;
-//           //  errors.push(value);
-//             console.log(value);
-//           //  return value;
-//         } else {
-//             var reason = result.reason;
-//             console.log(reason);
-//         }
-//     });
-// });
-  }
+bgimage:function(){
+  return 'css/content.png';
+}
 }
