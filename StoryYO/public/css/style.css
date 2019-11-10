@@ -21,7 +21,9 @@ main {
   height: 100%;
   width: 100%;
 }
-
+.progress .determinate{
+    background-color: #00aaff;
+}
 footer {
   margin-top: 0px;
 }
