@@ -20,7 +20,7 @@ module.exports = (app, db) => {
     }).then(user => {
       if (user) {
         return res.status(400).json({
-          exist: 'User with the same username already exists'
+          exist: 'User already exists !'
         });
       } else {
         const newUser = new Users({
