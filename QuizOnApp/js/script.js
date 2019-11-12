@@ -95,8 +95,8 @@ $(document).ready(function() {
 
   /*registration end*/
   $('#signin').click(function(){
-    if($('#email').val()!=='' && $('#pass').val()!==''){
-          let userData={email:$('#email').val(),password:$('#pass').val()};
+    if($('#loginEmail').val()!=='' && $('#loginPass').val()!==''){
+          let userData={email:$('#loginEmail').val(),password:$('#loginPass').val()};
         $.ajax({
             type: 'POST',
             data: JSON.stringify(userData),
@@ -104,13 +104,16 @@ $(document).ready(function() {
             url: 'http://localhost:5020/login'
           }).done((data) => {
             if(data){
-              console.log(data.token.split(' ')[1]);
+            //  console.log(data.token.split(' ')[1]);
               localStorage.setItem('authToken',data.token.split(' ')[1]);
               $('#startModal').modal('hide');
             }
           }).fail((xhr, textStatus, errorThrown) => {
-            console.log("ERROR: ", xhr.responseText)
-            return xhr.responseText;
+            let msg=JSON.parse(xhr.responseText);
+            $('#responseMsgLogin').html(msg.error);
+            $('#responseMsgLogin').css('display','block');
+            // console.log("ERROR: ", xhr.responseText)
+             //return xhr.responseText;
           });
      }
      else{
@@ -119,12 +122,11 @@ $(document).ready(function() {
   });
   /*login end*/
 
-
   /*registration end*/
   $('#signup').click(function(){
-    if($('#userName').val()!=='' && $('#email').val()!=='' && $('#pass').val()!=='' && $('#conPass').val()!==''){
-      if($('#pass').val()===$('#conPass').val()){
-          let userData={name:$('#userName').val(),email:$('#email').val(),password:$('#pass').val()};
+    if($('#userName').val()!=='' && $('#regEmail').val()!=='' && $('#regPass').val()!=='' && $('#conPass').val()!==''){
+      if($('#regPass').val()===$('#conPass').val()){
+          let userData={name:$('#userName').val(),email:$('#regEmail').val(),password:$('#regPass').val()};
         //  alert(JSON.stringify(userData));
         $.ajax({
             type: 'POST',
@@ -133,18 +135,22 @@ $(document).ready(function() {
             url: 'http://localhost:5020/registration'
           }).done((data) => {
             if(data){
-              console.log(data.token.split(' ')[1]);
+            //  console.log(data.token.split(' ')[1]);
               localStorage.setItem('authToken',data.token.split(' ')[1]);
                 $('#startModal').modal('hide');
             }
           }).fail((xhr, textStatus, errorThrown) => {
-            console.log("ERROR: ", xhr.responseText)
-            return xhr.responseText;
+            let msg=JSON.parse(xhr.responseText);
+            $('#responseMsgReg').html(msg.error);
+            $('#responseMsgReg').css('display','block');
+            // console.log("ERROR: ", xhr.responseText)
+            // return xhr.responseText;
           });
 
       }
       else{
-        $('.regMsg').html('Password Does not match !!');
+        $('#responseMsgReg').html('Password Does not match !!');
+        $('#responseMsgReg').css('display','block');
         $('#conPass').css('border','1px solid red');
         $('#conPass').val('');
       }
