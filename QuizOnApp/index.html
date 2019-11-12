@@ -229,17 +229,18 @@ objective: Create a quiz application
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                           </div>
-                      <input id="email"  type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                      <input id="loginEmail"  type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                         </div>
-                      <input id="pass" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                      <input id="loginPass" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                     </div>
                     <div class="">
   			                	<!--p>forgot your password? <a href="#">click here</a></p-->
   				                <p>Don't have an account !<a href="#"> Sign Up</a></p>
+                          <p id="responseMsgLogin" style="display:none;text-align:center;color:red;"></p>
   			            </div>
                     <div class="row justify-content-md-center">
                         <div class="col col-lg-start"></div>
@@ -260,23 +261,23 @@ objective: Create a quiz application
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         </div>
-                    <input id="email" type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                    <input id="regEmail" type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                   </div>
                   <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                       </div>
-                    <input id="pass" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <input id="regPass" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                   </div>
                   <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                       </div>
-                    <input id="conPass" type="text" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
+                    <input id="conPass" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
                   </div>
                   <div class="">
                         <p>Have an account !<a href="#"> Sign In</a></p>
-                        <p class="regMsg" style="text-align:center;color:red;"></p>
+                        <p id="responseMsgReg" style="display:none;text-align:center;color:red;"></p>
                   </div>
                   <div class="row justify-content-md-center">
                       <div class="col col-lg-start"></div>
