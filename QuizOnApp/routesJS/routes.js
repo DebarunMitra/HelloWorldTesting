@@ -68,7 +68,7 @@ module.exports = (app, db) => {
       .then(user => {
         if (!user)
           return res.status(404).send({
-            "Error": "User already with the same name already exists"
+            error:'User Not Exists! Please Sign Up...'
           });
         bcrypt.compare(req.body.password, user.password).then(correct => {
           if (correct) {

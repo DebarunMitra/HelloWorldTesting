@@ -1,13 +1,16 @@
 {
   "name": "quizonapp",
   "version": "1.0.0",
+  "engines": {
+      "node": "12.13.0"
+   },
   "description": "\"QuizOn application using nodeJS,expressJS,MongoDB\",",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "livereload": "livereload"
   },
-  "author": "",
+  "author": "DEBARUN MITRA",
   "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^16.1.7",
@@ -15,6 +18,7 @@
     "body-parser": "^1.19.0",
     "circular-json": "^0.5.9",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "jspon": "^1.0.1",
