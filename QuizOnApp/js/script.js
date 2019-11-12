@@ -141,7 +141,7 @@ $(document).ready(function() {
             }
           }).fail((xhr, textStatus, errorThrown) => {
             let msg=JSON.parse(xhr.responseText);
-            $('#responseMsgReg').html(msg.error);
+            $('#responseMsgReg').html(msg.exist);
             $('#responseMsgReg').css('display','block');
             // console.log("ERROR: ", xhr.responseText)
             // return xhr.responseText;
