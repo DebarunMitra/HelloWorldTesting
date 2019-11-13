@@ -1,13 +1,12 @@
-const path = require('path'); //to access public directory
-const bcrypt = require('bcrypt');
-const jsonwt = require('jsonwebtoken');
-const passport = require('passport');
-const key = require('../config/key').secret;
-const mongoose = require('mongoose');
-const Questions = mongoose.model('questions');
-const Users = mongoose.model('user');
-const Question = require('./Question');
-const auth = require('../middleware/auth');
+const path = require('path'); //useed to access public director
+const bcrypt = require('bcrypt');//useed to encrypt and dcrypt the user passport
+const jsonwt = require('jsonwebtoken');//useed to generate tokens
+const key = require('../config/key').secret;//client secret key
+const mongoose = require('mongoose');//used to access database schema
+const Questions = mongoose.model('questions');//question schema
+const Users = mongoose.model('user');//user schema
+const Question = require('./Question');//question selection class
+const auth = require('../middleware/auth');//middleware for authentication
 module.exports = (app, db) => {
   var noq = 8,
     topic;
@@ -88,7 +87,7 @@ module.exports = (app, db) => {
             })
           } else {
             res.status(401).json({
-              failed: 'Invalid user credentials'
+              error: 'Invalid user credentials'
             });
           }
         }).catch(err => console.log("error generating token " + err));
@@ -97,8 +96,6 @@ module.exports = (app, db) => {
 
   //randon question answar set
   app.post('/ranQue',auth,(req, res) => {
-  //  console.log(req.body);
-//    console.log(req.headers);
     var dbVal;
     topic = req.body.topic;
     Questions.find({
